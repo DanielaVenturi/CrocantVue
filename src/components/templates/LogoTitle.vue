@@ -21,9 +21,10 @@
   object-fit: cover;
 }
 
-.logo h2 {
-  font-family: 'Belleza', sans-serif;
+.logo h2{
+  font-family: "Cherry Bomb One", system-ui;
   font-weight: 400;
   font-style: normal;
+  color: #864EFF;
 }
 </style>
