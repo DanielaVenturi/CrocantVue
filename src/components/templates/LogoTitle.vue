@@ -2,7 +2,7 @@
 <template>
   <div class="logo">
     <img src="@/assets/logo.png" alt="LojaCrocant Logo" />
-    <h2>Loja Crocant</h2>
+    <h2>Crocant</h2>
   </div>
 </template>
 

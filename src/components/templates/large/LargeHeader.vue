@@ -3,63 +3,67 @@ import LogoTitle from '@/components/templates/LogoTitle.vue';
 </script>
 
 <template>
-  <div class="logo_and_menu">
-    <logo-title class="mb-2" />
+  <div class="navbar">
+    <logo-title class="logo" />
     <div class="menu">
-      <router-link to="/">
-       Feminino
-      </router-link>
-      <router-link to="/">
-       Masculino
-      </router-link>
-      <router-link to="/">
-        Infantil
-      </router-link>
+      <router-link to="/">Feminino</router-link>
+      <router-link to="/">Masculino</router-link>
+      <router-link to="/">Infantil</router-link>
+      <router-link to="/">Pins</router-link>
+      <router-link to="/">Pro Trabalho</router-link>
+    </div>
+    <div class="user-actions">
       <router-link to="/login">
-      Entrar
+        <i class="icon mdi mdi-account-circle-outline" /> 
       </router-link>
       <router-link to="/">
-       Feminino
-      </router-link>
-      <router-link to="/">
-       Pins
-      </router-link>
-      <router-link to="/">
-        Pro Trabalho
+        <i class="icon mdi mdi-cart-outline" /> 
       </router-link>
     </div>
   </div>
 </template>
 
 <style scoped>
-.logo_and_menu {
+.navbar {
   display: flex;
-  gap: 3rem;
   align-items: center;
-  font-size: 1.7rem;
- 
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px #864EFF;
+  padding: 1rem 2rem;
+  margin-top: 30px;
 }
 
-.mb-2 {
-  margin-bottom: 1.5rem;
-}
-
-.icon {
+.logo {
   font-size: 2rem;
-  align-self: center;
+  color: #864EFF; 
+  flex-shrink: 0; 
 }
-
 
 .menu {
-  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .menu a {
-
   text-decoration: none;
   color: #864EFF;
-  gap: 1rem;
   font-size: 1.3rem;
-  margin-top: 2.2rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.menu a:hover {
+  background-color: #864EFF;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.user-actions{
+    text-decoration: none;
+  color: #864EFF;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 </style>
