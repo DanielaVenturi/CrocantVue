@@ -21,14 +21,40 @@ import LogoTitle from '@/components/templates/LogoTitle.vue';
       </router-link>
     </div>
   </div>
+  <div class="banner">
+    <div class="banner">
+    <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
+    <h2>Pisando fofo com...</h2>
+    <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
+    <h2>Croc Cant</h2>
+  </div>
+
+  </div>
 </template>
 
 <style scoped>
+.banner h2{
+  font-family: "Cherry Bomb One", system-ui;
+  color: #864EFF;
+}
+.banner {
+  background-color: #FFE8F9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 15px;
+}
+
+img {
+  max-width: 15%;
+  height: auto;
+}
 .navbar {
   display: flex;
   align-items: center;
   background-color: #f8f9fa;
-  box-shadow: 0 4px 6px #864EFF;
+  box-shadow: 8px 8px 8px #864EFF;
   padding: 1rem 2rem;
   margin-top: 30px;
 }
@@ -66,4 +92,9 @@ import LogoTitle from '@/components/templates/LogoTitle.vue';
   padding: 0.5rem 1rem;
   transition: background-color 0.3s, color 0.3s;
 }
-</style>
+
+
+
+</style> 
+
+
