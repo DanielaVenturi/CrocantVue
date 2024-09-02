@@ -113,8 +113,8 @@ const toggleDropdown = () => {
   display: flex;
   justify-content: space-around;
   background-color: #f2ebfc;
-  padding: rem;
-  top: 100%;
+  padding: 1rem;
+ margin-top: 130px;
   left: 50%;
   right: 50%;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
