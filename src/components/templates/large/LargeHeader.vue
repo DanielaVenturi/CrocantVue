@@ -2,10 +2,8 @@
 import { ref } from 'vue';
 import LogoTitle from '@/components/templates/LogoTitle.vue';
 
-// Controla a visibilidade da div
 const showDropdown = ref(false);
 
-// Função para mostrar a div
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value;
 };
@@ -31,7 +29,6 @@ const toggleDropdown = () => {
     </div>
   </div>
 
-  <!-- Exibe a div apenas quando showDropdown é true -->
   <div v-if="showDropdown" class="dropdown-menu">
     <div class="column">
       <p>Clogs</p>
@@ -52,18 +49,19 @@ const toggleDropdown = () => {
     <div class="divider"></div>
     <div class="column">
       <p class="title">COLEÇÕES POPULARES</p>
-      <p>NBA</p>
+      <p>NBA</p>    
       <p>3D</p>
       <p>Disney</p>
     </div>
-  </div>
-
-  <div class="banner">
+    <div class="banner">
     <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
     <h2>Pisando fofo com...</h2>
     <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
     <h2>Croc Cant</h2>
   </div>
+  </div>
+
+ 
 </template>
 
 <style scoped>
