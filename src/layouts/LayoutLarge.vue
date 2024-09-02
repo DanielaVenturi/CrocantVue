@@ -45,7 +45,7 @@ aside{
 }
 footer {
   display: flex;
-  background-color: #eeeeee;
+  background-color: #864EFF;
   grid-area: footer;
 }
 </style>

@@ -18,7 +18,7 @@
   width: 100%;
   gap: 4rem;
   font-size: 1.2rem;
-  color: #000;
+  color: #ffffff;
 }
 
 .links a {
