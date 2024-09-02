@@ -53,14 +53,13 @@ const toggleDropdown = () => {
       <p>3D</p>
       <p>Disney</p>
     </div>
-    <div class="banner">
+  </div>
+  <!-- <div class="banner">
     <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
     <h2>Pisando fofo com...</h2>
     <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
     <h2>Croc Cant</h2>
-  </div>
-  </div>
-
+  </div> -->
  
 </template>
 
@@ -115,10 +114,9 @@ const toggleDropdown = () => {
   justify-content: space-around;
   background-color: #f2ebfc;
   padding: 1rem;
- 
-  top: 100%;
-  left: 0;
-  right: 0;
+ margin-top: 130px;
+  left: 50%;
+  right: 50%;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
   
 }
