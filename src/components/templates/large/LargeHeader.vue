@@ -2,15 +2,12 @@
 import { ref } from 'vue';
 import LogoTitle from '@/components/templates/LogoTitle.vue';
 
-// Controla a visibilidade da div
 const showDropdown = ref(false);
 
-// Função para mostrar a div
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value;
 };
 </script>
-
 <template>
   <div class="navbar">
     <logo-title class="logo" />
@@ -23,16 +20,19 @@ const toggleDropdown = () => {
     </div>
     <div class="user-actions">
       <router-link to="/login">
-        <i class="icon mdi mdi-account-circle-outline" /> 
+        <i class="icon mdi mdi-account-circle-outline" />
       </router-link>
       <router-link to="/">
-        <i class="icon mdi mdi-cart-outline" /> 
+        <i class="icon mdi mdi-cart-outline" />
       </router-link>
     </div>
   </div>
-
-  <!-- Exibe a div apenas quando showDropdown é true -->
-  <div v-if="showDropdown" class="dropdown-menu">
+  <div class="banner">
+    <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
+    <h2>Pisando fofo com...</h2>
+    <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
+    <h2>Croc Cant</h2>
+    <div v-if="showDropdown" class="dropdown-menu">
     <div class="column">
       <p>Clogs</p>
       <p>Plataformas</p>
@@ -57,12 +57,6 @@ const toggleDropdown = () => {
       <p>Disney</p>
     </div>
   </div>
-
-  <div class="banner">
-    <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
-    <h2>Pisando fofo com...</h2>
-    <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
-    <h2>Croc Cant</h2>
   </div>
 </template>
 
@@ -72,18 +66,19 @@ const toggleDropdown = () => {
   align-items: center;
   background-color: #f8f9fa;
   padding: 1rem 2rem;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100; 
+  z-index: 100;
 }
 
 .logo {
   font-size: 2rem;
-  color: #864EFF; 
-  flex-shrink: 0; 
+  color: #864EFF;
+  flex-shrink: 0;
 }
+
 .menu {
   display: flex;
   justify-content: center;
@@ -117,12 +112,12 @@ const toggleDropdown = () => {
   justify-content: space-around;
   background-color: #f2ebfc;
   padding: 1rem;
- 
+
   top: 100%;
   left: 0;
   right: 0;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
-  
+
 }
 
 .column {
@@ -149,13 +144,14 @@ const toggleDropdown = () => {
 .highlight {
   font-weight: bold;
 }
+
 .banner {
   background-color: #FFE8F9;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  margin-top: 4rem; 
+  margin-top: 8rem;
   position: relative;
   z-index: 1;
   height: 300px;
