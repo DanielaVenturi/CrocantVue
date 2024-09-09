@@ -11,6 +11,10 @@ onBeforeRouteUpdate(() => {
 </script>
 
 <template>
+  <div class="hamburger" @click="showMenu = !showMenu">
+    <i class="mdi mdi-menu" />
+  </div>
+
   <div id="footerMenu" :style="{ display: showMenu ? 'block' : 'none' }">
     <div class="column">
       <p>Clogs</p>
@@ -21,14 +25,18 @@ onBeforeRouteUpdate(() => {
       <p>Slides</p>
       <p>Tênis</p>
     </div>
+
     <div class="divider"></div>
+
     <div class="column">
       <p class="title">TENDÊNCIAS</p>
       <p>Altura Classic</p>
       <p>Glitter Lined</p>
       <p class="highlight">VER TUDO EM FEMININO</p>
     </div>
+
     <div class="divider"></div>
+
     <div class="column">
       <p class="title">COLEÇÕES POPULARES</p>
       <p>NBA</p>
@@ -36,26 +44,25 @@ onBeforeRouteUpdate(() => {
       <p>Disney</p>
     </div>
   </div>
-<div class="hamburger" @click="showMenu = !showMenu">
-  <i class="mdi mdi-menu" />
-  Menu
-</div>
-    <logo-title class="pl-0" />
-    <div class="icons">
-      <i class="mdi mdi-magnify" />
-    </div>
+
+  <logo-title class="pl-0" /> 
+  <div class="icons"></div>
 </template>
 
 <style scoped>
-.dropdown-menu {
-  display: flex;
-  justify-content: space-around;
-  background-color: #f2ebfc;
-  padding: 1rem;
-  top: 100%;
+.hamburger {
+  position: relative;
+}
+
+#footerMenu {
+  position: absolute;
+  top: 100%; 
   left: 0;
-  right: 0;
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+  background-color: #FFE8F9;
+  padding: 1rem;
+  z-index: 10;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .column {
@@ -86,6 +93,4 @@ onBeforeRouteUpdate(() => {
 .pl-0 {
   padding-left: 0rem;
 }
-
-
 </style>
