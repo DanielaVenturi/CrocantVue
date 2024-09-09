@@ -13,7 +13,7 @@ const toggleDropdown = () => {
   <div class="navbar">
     <logo-title class="logo" />
     <div class="menu">
-      <router-link to="/" @click="toggleDropdown">Feminino</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Feminino</router-link>
       <router-link to="/" @click="toggleDropdown">Masculino</router-link>
       <router-link to="/" @click="toggleDropdown">Infantil</router-link>
       <router-link to="/" @click="toggleDropdown">Pins</router-link>
