@@ -6,7 +6,7 @@ const products = ref([
   {
     name: 'Sandália Crocs Bayaband Clog BALLERINA PINK/ CANDY PINK',
     price: 'R$ 287,10',
-    image: '/src/assets/crocs1.png',
+    image: '/src/assets/imagens/Frame6.png',
   },
 
 ]);
@@ -56,6 +56,7 @@ const multipliedProducts = computed(() => {
   .produto-view {
     display: flex;
     padding: 2rem;
+    margin-top: 80px;
   }
   
   .filter-section {
