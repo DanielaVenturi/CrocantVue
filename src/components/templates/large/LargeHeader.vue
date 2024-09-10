@@ -23,7 +23,7 @@ const toggleDropdown = () => {
       <router-link to="/login">
         <i class="icon mdi mdi-account-circle-outline" /> 
       </router-link>
-      <router-link to="/">
+      <router-link to="/carrinho">
         <i class="icon mdi mdi-cart-outline" /> 
       </router-link>
     </div>
