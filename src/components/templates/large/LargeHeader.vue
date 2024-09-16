@@ -23,7 +23,7 @@ const toggleDropdown = () => {
       <router-link to="/login">
         <i class="icon mdi mdi-account-circle-outline" /> 
       </router-link>
-      <router-link to="/">
+      <router-link to="/carrinho">
         <i class="icon mdi mdi-cart-outline" /> 
       </router-link>
     </div>
@@ -31,36 +31,29 @@ const toggleDropdown = () => {
 
   <div v-if="showDropdown" class="dropdown-menu">
     <div class="column">
-      <p>Clogs</p>
-      <p>Plataformas</p>
-      <p>Sandálias</p>
-      <p>Chinelos</p>
-      <p>Botas</p>
-      <p>Slides</p>
-      <p>Tênis</p>
+      <router-link to="/produto" @click="toggleDropdown">Clogs</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Plataformas</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Sandálias</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Chinelos</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Botas</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Slides</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Tênis</router-link>
     </div>
     <div class="divider"></div>
     <div class="column">
       <p class="title">TENDÊNCIAS</p>
-      <p>Altura Classic</p>
-      <p>Glitter Lined</p>
-      <p class="highlight">VER TUDO EM FEMININO</p>
+      <router-link to="/produto" @click="toggleDropdown">Altura Classic</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Glitter Lined</router-link>
+      <router-link to="/produto" @click="toggleDropdown" class="highlight">VER TUDO EM FEMININO</router-link>
     </div>
     <div class="divider"></div>
     <div class="column">
       <p class="title">COLEÇÕES POPULARES</p>
-      <p>NBA</p>    
-      <p>3D</p>
-      <p>Disney</p>
+      <router-link to="/produto" @click="toggleDropdown">NBA</router-link>    
+      <router-link to="/produto" @click="toggleDropdown">3D</router-link>
+      <router-link to="/produto" @click="toggleDropdown">Disney</router-link>
     </div>
   </div>
-  <!-- <div class="banner">
-    <img class="banner-image" src="/src/assets/imagens/CrocCant.png" alt="Imagem 1">
-    <h2>Pisando fofo com...</h2>
-    <img class="banner-image" src="/src/assets/imagens/Frame 6.png" alt="Imagem 2">
-    <h2>Croc Cant</h2>
-  </div> -->
- 
 </template>
 
 <style scoped>
@@ -114,7 +107,7 @@ const toggleDropdown = () => {
   justify-content: space-around;
   background-color: #f2ebfc;
   padding: 1rem;
- margin-top: 130px;
+  margin-top: 130px;
   left: 50%;
   right: 50%;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
@@ -138,13 +131,23 @@ const toggleDropdown = () => {
   margin-bottom: 0.5rem;
 }
 
-.column p {
+.column p, .column a {
   margin: 0.3rem 0;
+  color: #864EFF;
+  text-decoration: none;
+}
+
+.column a {
+  color: #864EFF;
+  text-decoration: none;
+  /* Remove hover effect */
+  transition: none;
 }
 
 .highlight {
   font-weight: bold;
 }
+
 .banner {
   background-color: #FFE8F9;
   display: flex;

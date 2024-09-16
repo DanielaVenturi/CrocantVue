@@ -23,7 +23,7 @@ const createCategory = async () => {
       <div class="modal-header">
         <h2>Adicionar Categoria</h2>
         <button @click="$emit('close')" class="btn-close">
-          <i class="mdi mdi-close" />
+          <i class="mdi mdi-close"/>
         </button>
       </div>
       <form class="form" @submit.prevent="createCategory">

@@ -33,10 +33,6 @@ onBeforeRouteUpdate(() => {
       Carrinho
     </RouterLink>
 
-    <div class="hamburger" @click="showMenu = !showMenu">
-      <i class="mdi mdi-menu" />
-      Menu
-    </div>
   </div>
 </template>
 <style scoped>
