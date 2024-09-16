@@ -5,9 +5,10 @@ import { onBeforeRouteUpdate } from 'vue-router';
 
 // Estados para cada seção
 const showMenu = ref(false);
-const showCategorias = ref(false);
-const showTendencias = ref(false);
-const showColecoes = ref(false);
+const showFeminino
+  = ref(false);
+const showMasculino = ref(false);
+const showInfantil = ref(false);
 
 onBeforeRouteUpdate(() => {
   showMenu.value = false;
@@ -21,37 +22,61 @@ onBeforeRouteUpdate(() => {
 
   <div id="footerMenu" :style="{ display: showMenu ? 'block' : 'none' }">
     <div class="column">
-      <p class="title" @click="showCategorias = !showCategorias">Categorias</p>
-      <div v-if="showCategorias">
+      <!-- <router-link to="/" @click="toggleDropdown">Feminino</router-link> -->
+
+      <router-link to="/produto" class="title"   @click="showFeminino= !showFeminino">Feminino</router-link>
+      <div v-if="showFeminino">
         <p>Plataformas</p>
         <p>Sandálias</p>
         <p>Chinelos</p>
         <p>Botas</p>
         <p>Slides</p>
         <p>Tênis</p>
+        <p>Altura Classic</p>
+        <p>Glitter Lined</p>
+        <p>NBA</p>
+        <p>3D</p>
+        <p>Disney</p>
       </div>
     </div>
     <hr>
 
     <div class="column">
-      <p class="title" @click="showTendencias = !showTendencias">Tendências</p>
-      <div v-if="showTendencias">
+      <router-link to="/" class="title" @click="showMasculino = !showMasculino">Masculino</router-link>
+      <div v-if="showMasculino">
+        <p>Plataformas</p>
+        <p>Sandálias</p>
+        <p>Chinelos</p>
+        <p>Botas</p>
+        <p>Slides</p>
+        <p>Tênis</p>
         <p>Altura Classic</p>
         <p>Glitter Lined</p>
+        <p>NBA</p>
+        <p>3D</p>
+        <p>Disney</p>
       </div>
       <hr>
     </div>
 
     <!-- Coleções Populares -->
     <div class="column">
-      <p class="title" @click="showColecoes = !showColecoes">Coleções Populares</p>
-      <div v-if="showColecoes">
+      <router-link to="/" class="title" @click="showInfantil = !showInfantil">Infantil</router-link>
+      <div v-if="showInfantil">
+        <p>Plataformas</p>
+        <p>Sandálias</p>
+        <p>Chinelos</p>
+        <p>Botas</p>
+        <p>Slides</p>
+        <p>Tênis</p>
+        <p>Altura Classic</p>
+        <p>Glitter Lined</p>
         <p>NBA</p>
         <p>3D</p>
         <p>Disney</p>
       </div>
       <hr>
-      <p class="highlight">VER TUDO EM FEMININO</p>
+      <router-link to="/" class="highlight">Pins</router-link>
     </div>
 
   </div>
