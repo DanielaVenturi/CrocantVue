@@ -4,7 +4,7 @@
       <span class="icon">🛒</span>
     </header>
     <div class="divider"></div>
-    <h1>Carrinho de Compras</h1>
+   
     <div class="products">
       <h2>Produtos</h2>
       <div class="product" v-for="product in products" :key="product.id">
@@ -18,7 +18,7 @@
 
     <div class="cart">
       <h2>Carrinho</h2>
-      <div v-if="cart.length === 0">Seu carrinho está vazio</div>
+
       <div class="cart-item" v-for="item in cart" :key="item.id">
         <img :src="item.image" alt="Produto" class="cart-image" />
         <div class="cart-info">
@@ -30,9 +30,9 @@
         <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
       </div>
       <div class="cart-actions">
-        <button class="action-btn">Selecionar Tudo</button>
-        <button class="action-btn">Excluir</button>
-        <button class="action-btn">Continuar</button>
+        <button class="action-btn">Selecionar Tudo |</button>
+        <button class="action-btn">Excluir |</button>
+        <button class="action-btn">Continuar |</button>
       </div>
     </div>
   </div>
@@ -92,7 +92,7 @@ header {
   top: 0;
   right: 0;
   padding: 15px;
-  background: #6a0dad;
+  background: #864EFF;
   color: #fff;
   border-bottom: 2px solid #5c0cda;
   width: 100%;
@@ -121,14 +121,14 @@ header {
   margin: 20px auto;
   max-width: 900px;
   padding: 20px;
-  background: #fcedfa;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #F0ECFF;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgb(100, 97, 97);
   text-align: center;
 }
 
 .products {
-  border: 1px solid #ddd;
+  border: 1px solid #F0ECFF;
 }
 
 .product, .cart-item {
@@ -151,26 +151,34 @@ button {
   background: #864EFF;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 8px 16px;
+  border-radius: 0px;
+  padding: 8px 20px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background: #864EFF;
+  background: #5c0cda;
+  box-shadow: 0 0 15px rgba(134, 78, 255, 0.5);
 }
 
 button:active {
   transform: scale(0.95);
 }
 
+.add-to-cart-btn {
+  margin-top: 10px;
+}
+
 .cart {
   padding-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fcedfa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.952);
+  border-radius: 60px;
+  background: #C1A5FF;
+  width: 1418px;
+  height: 100px;
+  flex-shrink: 0;
 }
 
 .cart-item {
@@ -187,6 +195,7 @@ button:active {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
+ 
 }
 
 .cart-buttons button {
@@ -201,6 +210,9 @@ button:active {
 .cart-buttons button:hover {
   background: #5c0cda;
 }
+.cart-length{
+  text-align: center;
+}
 
 h1, h2, h3 {
   color: #864EFF;
@@ -209,17 +221,20 @@ h1, h2, h3 {
 h1 {
   margin-bottom: 20px;
   font-size: 32px;
+  text-align: center;
 }
 
 h2 {
   margin-bottom: 15px;
   font-size: 24px;
   text-align: center;
+  top: 20px;
 }
 
 h3 {
   margin-top: 15px;
   font-size: 20px;
 }
+
 </style>
 
