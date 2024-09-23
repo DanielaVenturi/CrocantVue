@@ -4,35 +4,34 @@
       <span class="icon">🛒</span>
     </header>
     <div class="divider"></div>
-   
+
     <div class="products">
       <h2>Produtos</h2>
       <div class="product" v-for="product in products" :key="product.id">
         <img :src="product.image" alt="Produto" class="product-image" />
         <div class="product-info">
           <span>{{ product.name }} - ${{ product.price.toFixed(2) }}</span>
-          <button @click="addToCart(product)">Adicionar ao Carrinho</button>
+          <button class="rounded-btn">Adicionar ao Carrinho</button>
         </div>
       </div>
     </div>
 
     <div class="cart">
       <h2>Carrinho</h2>
-
       <div class="cart-item" v-for="item in cart" :key="item.id">
         <img :src="item.image" alt="Produto" class="cart-image" />
         <div class="cart-info">
           <span>{{ item.name }} - ${{ item.price.toFixed(2) }} ({{ item.quantity }})</span>
-          <button @click="removeFromCart(item)">Remover</button>
+          <button class="rounded-btn">Remover</button>
         </div>
       </div>
       <div v-if="cart.length > 0" class="cart-summary">
         <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
       </div>
       <div class="cart-actions">
-        <button class="action-btn">Selecionar Tudo |</button>
-        <button class="action-btn">Excluir |</button>
-        <button class="action-btn">Continuar |</button>
+        <button class="rounded-btn">Selecionar Tudo </button>
+        <button class="rounded-btn">Excluir </button>
+        <button class="rounded-btn">Continuar </button>
       </div>
     </div>
   </div>
@@ -55,30 +54,9 @@ export default {
     cartTotal() {
       return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
     }
-  },
-  methods: {
-    addToCart(product) {
-      const existingItem = this.cart.find(item => item.id === product.id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        this.cart.push({ ...product, quantity: 1 });
-      }
-    },
-    removeFromCart(item) {
-      const index = this.cart.indexOf(item);
-      if (index > -1) {
-        if (item.quantity > 1) {
-          item.quantity -= 1;
-        } else {
-          this.cart.splice(index, 1);
-        }
-      }
-    }
   }
 };
 </script>
-
 <style scoped>
 #app {
   font-family: 'Arial', sans-serif;
@@ -147,14 +125,27 @@ header {
   font-size: 16px;
 }
 
+.product-info{
+color: #864EFF;
+ font-family: "Cherry Bomb One", system-ui;
+ text-align: center;
+ display: flex;
+ width: 100%;
+ justify-content: flex-end;
+ gap: 20%;
+ /* margin-left: 20px; */
+
+}
+
 button {
   background: #864EFF;
   color: #fff;
   border: none;
-  border-radius: 0px;
   padding: 8px 20px;
   cursor: pointer;
   font-size: 14px;
+  height: 30px;
+  width: 200px;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -177,7 +168,7 @@ button:active {
   border-radius: 60px;
   background: #C1A5FF;
   width: 1418px;
-  height: 100px;
+  height: 110px;
   flex-shrink: 0;
 }
 
@@ -222,6 +213,7 @@ h1 {
   margin-bottom: 20px;
   font-size: 32px;
   text-align: center;
+  font-family: "Cherry Bomb One", system-ui;
 }
 
 h2 {
@@ -229,11 +221,14 @@ h2 {
   font-size: 24px;
   text-align: center;
   top: 20px;
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: bold;
 }
 
 h3 {
   margin-top: 15px;
   font-size: 20px;
+  font-family: "Cherry Bomb One", system-ui;
 }
 
 </style>
