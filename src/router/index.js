@@ -36,10 +36,7 @@ const router = createRouter({
           component: () => import('@/views/CarrinhoView.vue'),
         },
         {
-          path: '/cadastro',
-          name: 'Cadastro',
-          component: () => import('@/views/CadatroView.vue'),
-        },
+
       ],
     },
   ],

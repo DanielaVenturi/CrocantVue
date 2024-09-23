@@ -44,7 +44,7 @@ const multipliedProducts = computed(() => {
           <img :src="product.image" alt="product" />
           <p>{{ product.name }}</p>
           <p class="price">{{ product.price }}</p>
-          <button >+</button>
+          <router-link to="/maisproduto" >+</router-link>
         </div>
       </section>
     </div>
