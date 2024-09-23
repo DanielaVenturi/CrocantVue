@@ -28,7 +28,7 @@ onBeforeRouteUpdate(() => {
       <i class="mdi mdi-account-circle-outline" />
       Perfil
     </RouterLink>
-    <RouterLink to="/">
+    <RouterLink to="/carrinhoSmall">
       <i class="mdi mdi-cart-outline" />
       Carrinho
     </RouterLink>
