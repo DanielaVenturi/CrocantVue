@@ -55,10 +55,10 @@ import { ref, computed } from 'vue';
 <style scoped>
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f2ebfc; /* Cor de fundo suave */
+  background-color: #f2ebfc; 
   margin: 0;
   padding: 0;
-  color: #4a148c; /* Roxo escuro */
+  color: #4a148c; 
 }
 
 .container {
@@ -81,7 +81,7 @@ body {
 .product-image {
   width: 80%;
   height: auto;
-  border: 2px solid #864EFF; /* Roxo */
+  border: 2px solid #864EFF;
   border-radius: 10px;
 }
 
@@ -101,7 +101,7 @@ body {
 }
 
 .thumbnail-images img:hover {
-  border-color: #864EFF; /* Mudar a borda ao passar o mouse */
+  border-color: #864EFF;
 }
 
 .details-section {
@@ -152,7 +152,7 @@ body {
 }
 
 .size-button:hover {
-  background-color: #6a0dad; /* Um tom mais escuro */
+  background-color: #6a0dad; 
 }
 
 .quantity {
