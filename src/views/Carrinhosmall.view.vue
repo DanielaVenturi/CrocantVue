@@ -9,7 +9,7 @@
     
     <div class="product" v-for="product in products" :key="product.id">
       <div class="product-image">
-        <img :src="product.image" :alt="product.name" />
+        <img src="/src/assets/imagens/Frame6.png" />
       </div>
       <div class="product-info">
         <h2>{{ product.name }}</h2>
@@ -29,10 +29,10 @@ export default {
   data() {
     return {
       products: [
-        { id: 1, name: 'Produto 1', price: 29.99, quantity: 1, image: 'https://via.placeholder.com/100/FF0000' },
-        { id: 2, name: 'Produto 2', price: 59.99, quantity: 2, image: 'https://via.placeholder.com/100/00FF00' },
-        { id: 3, name: 'Produto 3', price: 19.99, quantity: 1, image: 'https://via.placeholder.com/100/0000FF' },
-        { id: 4, name: 'Produto 4', price: 49.99, quantity: 3, image: 'https://via.placeholder.com/100/FFFF00' },
+        { id: 1, name: 'Sandália Crocs Bayband clog BALLERINA PINK/CANDY/PINK', price: 29.99, quantity: 1, image: 'https://via.placeholder.com/100/FF0000' },
+        { id: 2, name: 'Sandália Crocs Bayband clog BALLERINA PINK/CANDY/PINK', price: 59.99, quantity: 2, image: 'https://via.placeholder.com/100/00FF00' },
+        { id: 3, name: 'Sandália Crocs Bayband clog BALLERINA PINK/CANDY/PINK', price: 19.99, quantity: 1, image: 'https://via.placeholder.com/100/0000FF' },
+        { id: 4, name: 'Sandália Crocs Bayband clog BALLERINA PINK/CANDY/PINK', price: 49.99, quantity: 3, image: 'https://via.placeholder.com/100/FFFF00' },
       ]
     };
   }
@@ -43,7 +43,8 @@ export default {
 .shopping-cart {
   width: 60%;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
+  font-family: Cherry Bomb One;
+  color: #864EFF;
 }
 
 h1 {
@@ -67,7 +68,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #000000;
   margin-bottom: 20px;
 }
 
@@ -91,7 +92,7 @@ h1 {
 .product-info p {
   margin: 5px 0;
   font-size: 16px;
-  color: #555;
+  color: #000000;
 }
 
 .product-controls {
@@ -101,21 +102,23 @@ h1 {
 }
 
 button {
-  background-color: #007BFF;
-  color: white;
+  background-color: #864EFF;
+  color: rgb(255, 255, 255);
   border: none;
-  padding: 5px 10px;
+  padding: 10px 30px;
   cursor: not-allowed; /* Botões desativados */
   margin: 0 5px;
+  border-radius: 10px;
 }
 
 .quantity {
   width: 40px;
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid #C1A5FF;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px 40px;
   margin: 0 5px;
   cursor: not-allowed;
+  background-color: ;
 }
 </style>
