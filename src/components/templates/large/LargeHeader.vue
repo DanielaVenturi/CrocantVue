@@ -58,6 +58,7 @@ const toggleDropdown = () => {
 
 <style scoped>
 .navbar {
+  
   display: flex;
   align-items: center;
   background-color: #f8f9fa;
@@ -67,6 +68,7 @@ const toggleDropdown = () => {
   left: 0;
   right: 0;
   z-index: 100; 
+
 }
 
 .logo {
@@ -78,6 +80,7 @@ const toggleDropdown = () => {
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  
 }
 
 .menu a {
@@ -140,7 +143,6 @@ const toggleDropdown = () => {
 .column a {
   color: #864EFF;
   text-decoration: none;
-  /* Remove hover effect */
   transition: none;
 }
 
