@@ -1,18 +1,18 @@
 <script setup>
 import { reactive, defineEmits } from 'vue';
-import { useCategoryStore } from '@/stores/category';
+import { useCategoriaStore } from '@/stores/categoria';
 
 const emit = defineEmits(['close']);
 
-const categoryStore = useCategoryStore();
+const categoriaStore = useCategoriaStore();
 
-const category = reactive({
-  name: '',
-  icon: '',
+const categoria = reactive({
+  nome: '',
+ 
 });
 
-const createCategory = async () => {
-  await categoryStore.createCategory(category);
+const createCategoria = async () => {
+  await categoriaStore.createCategoria(categoria);
   emit('close');
 };
 </script>
@@ -26,14 +26,14 @@ const createCategory = async () => {
           <i class="mdi mdi-close"/>
         </button>
       </div>
-      <form class="form" @submit.prevent="createCategory">
+      <form class="form" @submit.prevent="createCategoria">
         <div class="row-form">
-          <label for="name">Nome</label>
-          <input type="text" id="name" v-model="category.name" />
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" v-model="categoria.nome" />
         </div>
         <div class="row-form">
           <label for="icon">Ícone</label>
-          <input type="text" id="icon" v-model="category.icon" />
+          <input type="text" id="icon" v-model="categoria.icon" />
         </div>
         <button class="btn-send" type="submit">Adicionar</button>
       </form>
@@ -42,10 +42,10 @@ const createCategory = async () => {
 </template>
 
 <style scoped>
+
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
+
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -53,6 +53,7 @@ const createCategory = async () => {
   justify-content: center;
   align-items: center;
   z-index: 100;
+ 
 }
 
 .modal-content {
@@ -66,7 +67,7 @@ const createCategory = async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-top:80px;
 }
 
 .modal-header h2 {
