@@ -40,9 +40,17 @@
         <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
       </div>
       <div class="cart-actions">
-        <button class="rounded-btn">Selecionar Tudo</button>
-        <button class="rounded-btn">Excluir</button>
-        <button class="rounded-btn">Continuar</button>
+       
+      </div>
+      
+      <div class="cart-actions-controls">
+        <!-- <label class="select-all-label">
+          <input type="checkbox" v-model="selectAll" @change="selectAllProducts">
+          Selecionar Tudo
+        </label> -->
+        <button class="button-cart">Selecionar Tudo</button>
+        <button class="button-cart">Excluir</button>
+        <button class="button-cart">Continuar</button>
       </div>
     </div>
   </div>
@@ -138,6 +146,7 @@ header {
   width: 100%;
   justify-content: flex-end;
   gap: 20%;
+
   /* margin-left: 20px; */
 }
 
@@ -247,6 +256,26 @@ button:active {
   display: flex;
   justify-content: space-between;
 }
+.cart-actions-controls{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:60px;
+}
+.button-cart{
+  font-family: "Cherry Bomb One", system-ui;
+  text-align: center;
+  font-size: 30px;
+}
+.select-all-label{
+  font-family: "Cherry Bomb One", system-ui;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 20%;
+  font-size: 30px;
+  color: #F0ECFF; 
+}
 
 h1,
 h2,
@@ -276,4 +305,5 @@ h3 {
   font-size: 20px;
   font-family: "Cherry Bomb One", system-ui;
 }
+
 </style>
