@@ -27,10 +27,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="banner"><img src="@/assets/imagens/Banner.png" alt="Crocs" class="banner-image" />
-  </div>
-
-
   <!-- Cartões de produtos -->
   <div class="product-card-colecoes">
     <div class="product-card">
@@ -55,8 +51,10 @@ onMounted(() => {
 
 <style scoped>
 @media only screen and (max-width: 350px) {
-  .banner-image{
+  .banner-image {
+    
   }
+
   .informacao-passagem .origin,
   .informacao-passagem .destiny {
     font-size: 0.4em;
@@ -81,6 +79,7 @@ onMounted(() => {
 /* Estilo dos cartões de produto */
 .product-card-colecoes {
   display: flex;
+  flex-wrap: wrap; /* Adiciona flex-wrap para permitir a quebra de linha */
   justify-content: space-evenly;
 }
 
@@ -93,7 +92,8 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
+  margin-bottom: 15px; /* Adiciona margem inferior para espaçamento entre as linhas */
 }
 
 .product-card img {
@@ -105,5 +105,7 @@ onMounted(() => {
   transform: scale(1.05);
 }
 
-@media only screen and (max-width: 1300px) {}
+@media only screen and (max-width: 1300px) {
+  
+}
 </style>
