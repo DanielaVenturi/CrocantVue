@@ -38,6 +38,7 @@ main {
   flex: 1;
   padding: 2rem;
   grid-area: main;
+  background-color: #fff;
 }
 aside{
   width: 100%;
@@ -48,4 +49,5 @@ footer {
   background-color: #864EFF;
   grid-area: footer;
 }
+
 </style>

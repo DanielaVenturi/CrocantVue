@@ -13,6 +13,7 @@
           <span>{{ product.name }} - ${{ product.price.toFixed(2) }}</span>
 
           <div class="quantity-controls">
+            <h2>Quantidade</h2>
             <div class="quantity-button">
               <button class="rounded-btn" @click="decreaseQuantity(product)">-</button>
             </div>
@@ -23,7 +24,6 @@
               <button class="rounded-btn" @click="increaseQuantity(product)">+</button>
             </div>
           </div>
-          <h2>Quantidade</h2>
         </div>
       </div>
     </div>
@@ -102,13 +102,12 @@ export default {
 </script>
 
 <style scoped>
-#app {
+.app {
   font-family: 'Arial', sans-serif;
   background: #f5f5f5;
-  color: #333;
+  color: #ffffff;
   padding: 20px;
 }
-
 header {
   position: fixed;
   top: 0;
@@ -192,6 +191,7 @@ header {
 .quantity-controls {
   display: flex;
   align-items: center;
+  
 }
 
 .quantity-button {
