@@ -10,6 +10,7 @@ const products = ref([
   },
 
 ]);
+const width = ref(window.innerWidth)
 
 const multipliedProducts = computed(() => {
   const multiplied = [];
@@ -23,31 +24,62 @@ const multipliedProducts = computed(() => {
 </script>
 <template>
   <!-- Colocar a seção de filtros no topo -->
-  <div class="filter-section">
-    <h2>CLOGS Ex.</h2>
-    <div class="filter">
-      <p>Faixa de Preço</p>
-      <input type="range" min="100" max="500" v-model="priceRange" class="slider" />
-      <p>Cores </p>
-      <div class="color-picker">
-        <div class="color-swatch" style="background-color: #FFBAD8;"></div>
-        <div class="color-swatch" style="background-color: #864EFF;"></div>
-        <div class="color-swatch" style="background-color: #D78FFF;"></div>
+  <!-- TELA PEQUENA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+  <div class="smallScreen" v-if="width <= 469">
+    <div class="filter-section">
+      <h2>CLOGS Ex.</h2>
+      <div class="filter">
+        <p>Faixa de Preço</p>
+        <input type="range" min="100" max="500" v-model="priceRange" class="slider" />
+        <p>Cores </p>
+        <div class="color-picker">
+          <div class="color-swatch" style="background-color: #FFBAD8;"></div>
+          <div class="color-swatch" style="background-color: #864EFF;"></div>
+          <div class="color-swatch" style="background-color: #D78FFF;"></div>
 
+        </div>
       </div>
     </div>
+    <div class="produto-view">
+      <!-- Lista de produtos abaixo da seção de filtro -->
+      <section class="product-list">
+        <div v-for="(product, index) in multipliedProducts" :key="index" class="product-card">
+          <img :src="product.image" alt="product" />
+          <p>{{ product.name }}</p>
+          <p class="price">{{ product.price }}</p>
+          <button>+</button>
+        </div>
+      </section>
+    </div>
+<!-- TELA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+  
   </div>
-  <div class="produto-view">
-    <!-- Lista de produtos abaixo da seção de filtro -->
-    <section class="product-list">
-      <div v-for="(product, index) in multipliedProducts" :key="index" class="product-card">
-        <img :src="product.image" alt="product" />
-        <p>{{ product.name }}</p>
-        <p class="price">{{ product.price }}</p>
-        <button>+</button>
-      </div>
-    </section>
+  <div class="mediumScreen" v-else>
+    <div class="produto-view">
+      <aside class="filter-section">
+        <h2>CLOGS Ex.</h2>
+        <div class="filter">
+          <p>Faixa de Preço</p>
+          <input type="range" min="100" max="500" v-model="priceRange" class="slider" />
+          <p>Cor</p>
+          <div class="color-picker">
+            <div class="color-swatch" style="background-color: #FFBAD8;"></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="product-list">
+        <div v-for="(product, index) in multipliedProducts" :key="index" class="product-card">
+          <img :src="product.image" alt="product" />
+          <p>{{ product.name }}</p>
+          <p class="price">{{ product.price }}</p>
+          <button>+</button>
+        </div>
+      </section>
+    </div>
   </div>
+
+
 </template>
 
 
@@ -143,6 +175,7 @@ const multipliedProducts = computed(() => {
     background-color: #D78FFF;
   }
 }
+
 /* !!!!!!!!!!!!!!!!!!!!!!!!!! telas acima de 470px !!!!!!!!!!!!!!!!!!!!!!!!!! */
 @media only screen and (min-width: 470px) {
   .produto-view {
@@ -233,6 +266,4 @@ const multipliedProducts = computed(() => {
     background-color: #D78FFF;
   }
 }
-
-
 </style>
