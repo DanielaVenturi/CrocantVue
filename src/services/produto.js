@@ -6,7 +6,7 @@ export default class ProdutoService {
     return response.data.results;
   }
 
-  async getProductByCategoria(categoria_id) {
+  async getProdutosByCategoria(categoria_id) {
     const response = await axios.get(`/produtos/?categoria__id=${categoria_id}`);
     return response.data.results;
   }

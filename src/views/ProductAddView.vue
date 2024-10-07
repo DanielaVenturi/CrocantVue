@@ -66,10 +66,10 @@ onMounted(async () => {
           <option
             v-for="categoria in categoriaStore.categorias" :key="categoria.id"
             :value="categoria.id" >
-            
+            {{ categoria.nome }}
           </option>
         </select>
-        <button class="btn-icon" @click="showModal = !showModal">+</button>
+        <button class="btn-icon" @click.stop="showModal = !showModal">+</button>
       </div>
     </div>
     <div class="row-form">
@@ -91,8 +91,6 @@ onMounted(async () => {
    
     <button class="btn-send" type="submit">Adicionar</button>
   </form>
-   -  -  - 
-
   <modal-add-categoria v-if="showModal" @close="showModal = !showModal" />
 </template>
 

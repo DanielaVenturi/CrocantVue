@@ -1,20 +1,21 @@
 <script setup>
-import { reactive, defineEmits } from 'vue';
+import { reactive, defineEmits, } from 'vue';
 import { useCategoriaStore } from '@/stores/categoria';
 
 const emit = defineEmits(['close']);
 
 const categoriaStore = useCategoriaStore();
 
-const categoria = reactive({
+const categorias = reactive({
   nome: '',
  
 });
 
 const createCategoria = async () => {
-  await categoriaStore.createCategoria(categoria);
+  await categoriaStore.createCategoria(categorias);
   emit('close');
 };
+
 </script>
 
 <template>
@@ -29,11 +30,11 @@ const createCategoria = async () => {
       <form class="form" @submit.prevent="createCategoria">
         <div class="row-form">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" v-model="categoria.nome" />
+          <input type="text" id="nome" v-model="categorias.nome" />
         </div>
         <div class="row-form">
           <label for="icon">Ícone</label>
-          <input type="text" id="icon" v-model="categoria.icon" />
+          <input type="text" id="icon" v-model="categorias.icon" />
         </div>
         <button class="btn-send" type="submit">Adicionar</button>
       </form>
