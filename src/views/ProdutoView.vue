@@ -25,7 +25,7 @@ const multipliedProducts = computed(() => {
 <template>
   <!-- Colocar a seção de filtros no topo -->
   <!-- TELA PEQUENA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-  <div class="smallScreen" v-if="width <= 469">
+  <div class="smallScreen" v-if="width <= 599">
     <div class="filter-section">
       <h2>CLOGS Ex.</h2>
       <div class="filter">
@@ -51,8 +51,8 @@ const multipliedProducts = computed(() => {
         </div>
       </section>
     </div>
-<!-- TELA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-  
+
+    <!-- TELA GRANDE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   </div>
   <div class="mediumScreen" v-else>
     <div class="produto-view">
@@ -85,13 +85,12 @@ const multipliedProducts = computed(() => {
 
 
 <style scoped>
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!  telas abaixo de 469px !!!!!!!!!!!!!!!!!!!!!!!!!! */
-@media only screen and (max-width: 469px) {
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!  telas abaixo de 469px SMALL!!!!!!!!!!!!!!!!!!!!!!!!!! */
+@media only screen and (max-width: 599px) {
   .produto-view {
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    margin-top: 80px;
   }
 
   .filter-section {
@@ -176,8 +175,99 @@ const multipliedProducts = computed(() => {
   }
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!!!!!! telas acima de 470px !!!!!!!!!!!!!!!!!!!!!!!!!! */
-@media only screen and (min-width: 470px) {
+/* !!!!!!!!!!!!!!!!!!!!!!!!!! telas acima de 600px MEDIUM !!!!!!!!!!!!!!!!!!!!!!!!!! */
+@media only screen and (min-width: 600px) {
+  .produto-view {
+    display: flex;
+
+    margin-top: 80px;
+  }
+
+  .filter-section {
+    width: 250px;
+    margin-right: 2rem;
+    background-color: #F9F2FF;
+    padding: 1.5rem;
+    border-radius: 12px;
+    color: #864EFF;
+  }
+
+  .filter-section h2 {
+    font-size: 2rem;
+    color: #864EFF;
+    margin-bottom: 1rem;
+  }
+
+  .filter p {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .slider {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .color-picker {
+    display: flex;
+    align-items: center;
+  }
+
+  .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    background-color: #FFBAD8;
+  }
+
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .product-card {
+    background-color: #F9F2FF;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-card img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+  }
+
+  .product-card p {
+    margin: 1rem 0;
+    color: #864EFF;
+  }
+
+  .product-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .product-card button {
+    background-color: #864EFF;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .product-card button:hover {
+    background-color: #D78FFF;
+  }
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!! telas acima de 800px LARGE !!!!!!!!!!!!!!!!!!!!!!!!!! */
+@media only screen and (min-width: 800px) {
   .produto-view {
     display: flex;
     padding: 2rem;
@@ -224,7 +314,7 @@ const multipliedProducts = computed(() => {
 
   .product-list {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
