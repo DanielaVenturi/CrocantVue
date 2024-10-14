@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style scoped>
-.app {
+
   font-family: 'Arial', sans-serif;
   background: #f5f5f5;
   color: #ffffff;

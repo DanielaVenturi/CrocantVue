@@ -5,7 +5,11 @@ import LogoTitle from '@/components/templates/LogoTitle.vue';
 const showDropdown = ref(false);
 
 const toggleDropdown = () => {
-  showDropdown.value = !showDropdown.value;
+  showDropdown.value = true;
+};
+
+const hideMenu = () => {
+  showDropdown.value = false;
 };
 </script>
 
@@ -29,32 +33,33 @@ const toggleDropdown = () => {
     </div>
   </div>
 
-  <div v-if="showDropdown" class="dropdown-menu">
+  <div v-if="showDropdown" class="dropdown-menu" @mouseleave="hideMenu">
     <div class="column">
-      <router-link to="/produto" @click="toggleDropdown">Clogs</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Plataformas</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Sandálias</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Chinelos</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Botas</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Slides</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Tênis</router-link>
+      <router-link to="/produto" @click="hideMenu">Clogs</router-link>
+      <router-link to="/produto" @click="hideMenu">Plataformas</router-link>
+      <router-link to="/produto" @click="hideMenu">Sandálias</router-link>
+      <router-link to="/produto" @click="hideMenu">Chinelos</router-link>
+      <router-link to="/produto" @click="hideMenu">Botas</router-link>
+      <router-link to="/produto" @click="hideMenu">Slides</router-link>
+      <router-link to="/produto" @click="hideMenu">Tênis</router-link>
     </div>
     <div class="divider"></div>
     <div class="column">
       <p class="title">TENDÊNCIAS</p>
-      <router-link to="/produto" @click="toggleDropdown">Altura Classic</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Glitter Lined</router-link>
-      <router-link to="/produto" @click="toggleDropdown" class="highlight">VER TUDO EM FEMININO</router-link>
+      <router-link to="/produto" @click="hideMenu">Altura Classic</router-link>
+      <router-link to="/produto" @click="hideMenu">Glitter Lined</router-link>
+      <router-link to="/produto" @click="hideMenu" class="highlight">VER TUDO EM FEMININO</router-link>
     </div>
     <div class="divider"></div>
     <div class="column">
       <p class="title">COLEÇÕES POPULARES</p>
-      <router-link to="/produto" @click="toggleDropdown">NBA</router-link>    
-      <router-link to="/produto" @click="toggleDropdown">3D</router-link>
-      <router-link to="/produto" @click="toggleDropdown">Disney</router-link>
+      <router-link to="/produto" @click="hideMenu">NBA</router-link>    
+      <router-link to="/produto" @click="hideMenu">3D</router-link>
+      <router-link to="/produto" @click="hideMenu">Disney</router-link>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .navbar {
@@ -110,11 +115,10 @@ const toggleDropdown = () => {
   justify-content: space-around;
   background-color: #f2ebfc;
   padding: 1rem;
-  margin-top: 130px;
-  left: 50%;
-  right: 50%;
+  margin-top: 100px;
+  left: 35%;
+  right: 35%;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
-  
 }
 
 .column {
@@ -150,17 +154,7 @@ const toggleDropdown = () => {
   font-weight: bold;
 }
 
-.banner {
-  background-color: #FFE8F9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  margin-top: 4rem; 
-  position: relative;
-  z-index: 1;
-  height: 300px;
-}
+
 
 .banner h2 {
   font-family: "Cherry Bomb One", system-ui;
@@ -171,4 +165,5 @@ img {
   max-width: 15%;
   height: auto;
 }
-</style>
+</style> 
+

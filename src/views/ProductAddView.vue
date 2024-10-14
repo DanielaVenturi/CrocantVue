@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 
-import ModalAddCategory from '@/components/ModalAddCategory.vue';
-import { useCategoryStore } from '@/stores/category';
-import { useProductStore } from '@/stores/product';
+import ModalAddCategoria from '@/components/ModalAddCategoria.vue';
+import { useCategoriaStore } from '@/stores/categoria';
+import { useProdutoStore } from '@/stores/produto';
 import { useUploaderStore } from '@/stores/uploader';
 
-const categoryStore = useCategoryStore();
-const productStore = useProductStore();
+const categoriaStore = useCategoriaStore();
+const produtoStore = useProdutoStore();
 const uploaderStore = useUploaderStore();
 
 const showModal = ref(false);
@@ -16,13 +16,13 @@ const coverUrl = ref('');
 const file = ref(null);
 const previewImage = ref('');
 
-const product = reactive({
-  title: '',
-  description: '',
-  category: '',
+const produto = reactive({
+  nome: '',
+  descricao: '',
+  categoria: '',
   image_attachment_key: '',
-  price: '',
-  stock: '',
+  preco: '',
+  
 });
 
 const uploadImage = (e) => {
@@ -31,47 +31,45 @@ const uploadImage = (e) => {
 };
 
 async function save() {
-  product.image_attachment_key = await uploaderStore.uploadImage(file.value);
-  await productStore.createProduct(product);
-  Object.assign(product, {
-    title: '',
-    description: '',
-    category: '',
+  produto.image_attachment_key = await uploaderStore.uploadImage(file.value);
+  await produtoStore.createProduct(produto);
+  Object.assign(produto, {
+    nome: '',
+    descricao: '',
+    categoria: '',
     image_attachment_key: '',
-    price: '',
+    preco: '',
     stock: '',
   });
 }
 
 onMounted(async () => {
-  await categoryStore.getCategories();
+  await categoriaStore.getCategorias();
 });
 </script>
 <template>
   <h1>Adicionar Produto</h1>
   <form class="form" @submit.prevent="save">
     <div class="row-form">
-      <label for="title">Título</label>
-      <input type="text" id="title" v-model="product.title" />
+      <label for="nome">Título</label>
+      <input type="text" id="nome" v-model="produto.nome" />
     </div>
     <div class="row-form">
-      <label for="description">Descrição</label>
-      <textarea id="description" v-model="product.description"></textarea>
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" v-model="produto.descricao"></textarea>
     </div>
     <div class="row-form">
-      <label for="category">Categoria</label>
+      <label for="categoria">Categoria</label>
       <div class="row ">
-        <select id="category" v-model="product.category">
+        <select id="categoria" v-model="produto.categoria">
           <option value="" disabled>Selecione uma categoria</option>
           <option
-            v-for="category in categoryStore.categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            
+            v-for="categoria in categoriaStore.categorias" :key="categoria.id"
+            :value="categoria.id" >
+            {{ categoria.nome }}
           </option>
         </select>
-        <button class="btn-icon" @click="showModal = !showModal">+</button>
+        <button class="btn-icon" @click.stop="showModal = !showModal">+</button>
       </div>
     </div>
     <div class="row-form">
@@ -87,21 +85,17 @@ onMounted(async () => {
       </div>
     </div>
     <div class="row-form">
-      <label for="price">Preço</label>
-      <input type="number" id="price" v-model="product.price" />
+      <label for="preco">Preço</label>
+      <input type="number" id="preco" v-model="produto.preco" />
     </div>
-    <div class="row-form">
-      <label for="stock">Estoque</label>
-      <input type="number" id="stock" v-model="product.stock" />
-    </div>
+   
     <button class="btn-send" type="submit">Adicionar</button>
   </form>
-   -  -  - 
-
-  <modal-add-category v-if="showModal" @close="showModal = !showModal" />
+  <modal-add-categoria v-if="showModal" @close="showModal = !showModal" />
 </template>
 
 <style scoped>
+
 .form {
   display: flex;
   flex-direction: column;
