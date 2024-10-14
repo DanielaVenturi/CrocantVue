@@ -1,43 +1,43 @@
 <script setup>
 import { onMounted } from 'vue';
-import { useProductStore } from '@/stores/product';
+import { useProdutoStore } from '@/stores/produto';
 
 import { formatDescription, formatPrice, formatTitle } from '@/helpers/format';
 
-const productStore = useProductStore();
+const produtoStore = useProdutoStore();
 
-async function getProducts() {
-  await productStore.getProducts();
+async function getProduto() {
+  await produtoStore.getProduto();
 }
 
 onMounted(async () => {
-  await getProducts();
+  await getProduto();
 });
 </script>
 
 <template>
-  <div class="product-list">
-    <div v-if="productStore.products.length === 0">
+  <div class="produto-list">
+    <div v-if="produtoStore.produtos.length === 0">
       <p>Produtos não encontrados!!!</p>
     </div>
     <div
-      v-for="product in productStore.products"
-      :key="product.id"
-      class="product-card"
+      v-for="produto in produtoStore.produtos"
+      :key="produto.id"
+      class="produto-card"
     >
-      <div class="product-img-wrapper">
-        <img :src="product.image?.url" alt="product.name" />
+      <div class="produto-img-wrapper">
+        <img :src="produto.image?.url" alt="produto.name" />
         <i class="mdi mdi-heart-outline" />
       </div>
-      <div class="product-title-price">
+      <div class="produto-nome-preco">
         
-        <p>{{ formatTitle(product.title) }}</p>
-        <p>{{ formatPrice(product.price * 1) }}</p>
+        <p>{{ formatTitle(produto.nome) }}</p>
+        <p>{{ formatPrice(produto.preco * 1) }}</p>
         
       </div>
-      <div class="product-description-stars">
+      <div class="produto-descricao-stars">
         
-        <p>{{ formatDescription(product.description) }}</p>
+        <p>{{ formatDescription(produto.descricao) }}</p>
         
         <div class="stars">
           <i class="mdi mdi-star" size="20" />
@@ -52,7 +52,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.product-list {
+.produto-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -60,12 +60,12 @@ onMounted(async () => {
   padding: 1rem;
 }
 
-.product-card {
+.produto-card {
   width: 225px;
   font-family: 'Belleza', sans-serif;
 }
 
-.product-img-wrapper {
+.produto-img-wrapper {
   display: flex;
   justify-content: center;
   align-items: top;
@@ -76,32 +76,32 @@ onMounted(async () => {
   height: 201px;
 }
 
-.product-img-wrapper img {
+.produto-img-wrapper img {
   width: 153px;
   height: 170px;
   object-fit: cover;
 }
 
-.product-title-price {
+.produto-nome-preco {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.product-title-price p {
+.produto-nome-preco p {
   font-weight: bold;
   font-size: 16px;
   color: #010101;
 }
 
-.product-description-stars {
+.produto-descricao-stars {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
-.product-description-stars p {
+.produto-descricao-stars p {
   font-size: 12px;
   color: #535050;
 }

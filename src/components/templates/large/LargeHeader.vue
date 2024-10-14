@@ -115,11 +115,10 @@ const hideMenu = () => {
   justify-content: space-around;
   background-color: #f2ebfc;
   padding: 1rem;
-  margin-top: 130px;
-  left: 50%;
-  right: 50%;
+  margin-top: 100px;
+  left: 35%;
+  right: 35%;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
-  
 }
 
 .column {
@@ -155,17 +154,7 @@ const hideMenu = () => {
   font-weight: bold;
 }
 
-.banner {
-  background-color: #FFE8F9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  margin-top: 4rem; 
-  position: relative;
-  z-index: 1;
-  height: 300px;
-}
+
 
 .banner h2 {
   font-family: "Cherry Bomb One", system-ui;

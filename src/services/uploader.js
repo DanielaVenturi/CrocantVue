@@ -1,18 +1,17 @@
 import axios from 'axios';
 
 export default class UploaderService {
-    async uploadFile(file) {
-        const formData = new FormData();
-        formData.append("file", image);
-
-        const response = await axios.post("/media/images", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
-
-        return response.data.url;
-    }
+  async uploadImage(image) {
+    const formData = new FormData();
+    formData.append('file', image);
+    const response = await axios.post('/media/images/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  }
+}
 
     // async deleteFile(fileUrl) {
     //     await axios.delete(`/media/images${fileUrl}`);
@@ -22,4 +21,3 @@ export default class UploaderService {
     //     const response = await axios.get(`/media/images/signed-url/${fileUrl}`);
     //     return response.data.url;
     // }
-}

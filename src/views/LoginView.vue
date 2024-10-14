@@ -28,6 +28,10 @@ import '@passageidentity/passage-elements/passage-auth';
     </div>
     
   </div>
+  <h1>Login</h1>
+  <div class="authContainer">
+    <passage-auth app-id="5DAaOaVZqqNtEpUNvpeRIiTG"></passage-auth>
+  </div>
 </template>
 
 <style>
