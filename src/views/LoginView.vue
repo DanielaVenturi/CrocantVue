@@ -8,7 +8,9 @@ import '@passageidentity/passage-elements/passage-auth';
       <img src="/src/assets/imagens/lagarto.png" alt="" />
     </div>
     <div class="login-box">
-      <h1>Olá <br> Bem Vindo a Crocant!</h1>
+      <passage-auth app-id="5DAaOaVZqqNtEpUNvpeRIiTG"></passage-auth>
+
+      <!-- <h1>Olá <br> Bem Vindo a Crocant!</h1>
       <form class="login-form">
         <label for="email">Email:</label>
         <input type="email" id="email" placeholder="Email">
@@ -24,14 +26,14 @@ import '@passageidentity/passage-elements/passage-auth';
         <button type="submit" class="login-button">Login</button>
 
         <p class="signup">Novo membro?   <router-link to="/cadastro" ></router-link></p>
-      </form>
+      </form> -->
     </div>
     
   </div>
-  <h1>Login</h1>
+  <!-- <h1>Login</h1>
   <div class="authContainer">
     <passage-auth app-id="5DAaOaVZqqNtEpUNvpeRIiTG"></passage-auth>
-  </div>
+  </div> -->
 </template>
 
 <style>
