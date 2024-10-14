@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 
-  font-family: 'Arial', sans-serif;
+  h1{font-family: 'Arial', sans-serif;
   background: #f5f5f5;
   color: #ffffff;
   padding: 20px;
