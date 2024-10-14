@@ -9,9 +9,7 @@
     <header>
       <medium-header />
     </header>
-    <aside>
-      <medium-aside />
-    </aside>
+
     <main>
       <router-view />
     </main>

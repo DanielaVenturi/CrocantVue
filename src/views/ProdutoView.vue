@@ -10,6 +10,7 @@ const products = ref([
   },
 
 ]);
+const width = ref(window.innerWidth)
 
 const multipliedProducts = computed(() => {
   const multiplied = [];
@@ -18,18 +19,12 @@ const multipliedProducts = computed(() => {
   }
   return multiplied;
 });
-
+// ARRUMAR; colocar o filter-section na parte esquerda da tela em telas grandes :)
 
 </script>
 <template>
-  <div class="produto-view">
-    <aside class="filter-section">
+
       <h2>CLOGS Ex.</h2>
       <div class="filter">
         <p>Faixa de Preço</p>
         <input type="range" min="100" max="500" v-model="priceRange" class="slider" />
-        <p>Cor</p>
-        <div class="color-picker">
-          <div class="color-swatch" style="background-color: #FFBAD8;"></div>
-        </div>
-
