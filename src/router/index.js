@@ -40,6 +40,7 @@ const router = createRouter({
           name: 'Maisproduto',
           component: () => import('@/views/MaisProdutoView.vue'),
         }
+
       ],
     },
   ],

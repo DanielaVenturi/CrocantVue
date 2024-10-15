@@ -16,6 +16,34 @@ const createCategoria = async () => {
   emit('close');
 };
 
+onMounted(async () => {
+  categorias.value = await categoriasApi.buscarTodasAsCategorias()
+})
+
+function limpar() {
+  Object.assign(categoria, { ...defaultCategoria })
+}
+
+async function salvar() {
+  if (categoria.id) {
+    await categoriasApi.atualizarCategoria(categoria)
+  } else {
+    await categoriasApi.adicionarCategoria(categoria)
+  }
+  categorias.value = await categoriasApi.buscarTodasAsCategorias()
+  limpar()
+}
+
+function editar(categoria_para_editar) {
+  Object.assign(categoria, categoria_para_editar)
+}
+
+async function excluir(id) {
+  await categoriasApi.excluirCategoria(id)
+  categorias.value = await categoriasApi.buscarTodasAsCategorias()
+  limpar()
+}
+
 </script>
 
 <template>
@@ -40,6 +68,32 @@ const createCategoria = async () => {
       </form>
     </div>
   </div>
+
+  <h1 class="titulo-categoria">Categoria</h1>
+
+<div class="categoria">
+  <div class="form-section">
+    <input
+      type="text"
+      v-model="categoria.descricao"
+      placeholder="Descrição"
+      class="input-field"
+    />
+    <button @click="salvar" class="btn salvar">Salvar</button>
+    <button @click="limpar" class="btn limpar">Limpar</button>
+  </div>
+
+  <div class="list-section">
+    <ul class="categoria-list">
+      <li v-for="categoria in categorias" :key="categoria.id" class="categoria-item">
+        <span @click="editar(categoria)" class="categoria-text">
+          ({{ categoria.id }}) - {{ categoria.descricao }} -
+        </span>
+        <button @click="excluir(categoria.id)" class="btn-delete">x</button>
+      </li>
+    </ul>
+  </div>
+</div>
 </template>
 
 <style scoped>
