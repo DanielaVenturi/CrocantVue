@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: '',
+      name: 'MainLayout', // Definindo um nome apropriado para a rota raiz
       component: LayoutFull,
       children: [
         {
@@ -34,7 +34,7 @@ const router = createRouter({
           path: '/carrinho',
           name: 'Carrinho',
           component: () => import('@/views/CarrinhoView.vue'),
-
+        }
       ],
     },
   ],
