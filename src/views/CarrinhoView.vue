@@ -131,6 +131,13 @@ export default {
 </script>
 
 <style scoped>
+
+  h1{
+  font-family: 'Arial', sans-serif;
+  background: #f5f5f5;
+  color: #ffffff;
+  padding: 20px;
+}
 header {
   position: fixed;
   top: 0;

@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Cartões de produtos -->
+
   <div class="product-card-colecoes">
     <div class="product-card">
       <img src="@/assets/imagens/disney.webp" alt="Disney" />
@@ -50,36 +50,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@media only screen and (max-width: 350px) {
-  .banner-image {
-    
-  }
 
-  .informacao-passagem .origin,
-  .informacao-passagem .destiny {
-    font-size: 0.4em;
-  }
 
-  .card-passagensMenu {
-    width: 20vw;
-    margin: 2vw 5vw;
-  }
-
-  .wrap-passagens {
-    width: 20vw;
-  }
-}
-
-.banner-image {
-  width: 100%;
-  height: 100%;
-  margin-top: 80px;
-}
-
-/* Estilo dos cartões de produto */
 .product-card-colecoes {
   display: flex;
-  flex-wrap: wrap; /* Adiciona flex-wrap para permitir a quebra de linha */
+  flex-wrap: wrap; 
   justify-content: space-evenly;
 }
 
@@ -105,7 +80,5 @@ onMounted(() => {
   transform: scale(1.05);
 }
 
-@media only screen and (max-width: 1300px) {
-  
-}
+
 </style>
