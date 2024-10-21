@@ -28,7 +28,7 @@ onBeforeRouteUpdate(() => {
       <i class="mdi mdi-account-circle-outline" />
       Perfil
     </RouterLink>
-    <RouterLink to="/carrinhoSmall">
+    <RouterLink to="/carrinho">
       <i class="mdi mdi-cart-outline" />
       Carrinho
     </RouterLink>
@@ -55,7 +55,7 @@ onBeforeRouteUpdate(() => {
     justify-content: space-between;
     text-decoration: none;
     color: #282828;
-    font-size: 1rem;
+    font-size: 12px;
     transition: color 0.3s;
 }
 
