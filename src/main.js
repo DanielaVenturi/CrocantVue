@@ -1,16 +1,21 @@
-import './assets/main.css'
+// main.js
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import App from './App.vue'
-import router from './router'
-import './plugins/axios'
+import App from './App.vue';
+import router from './router';
+import { createPinia } from 'pinia'; // Importa o Pinia
 
-const app = createApp(App)
+// Cria uma instância do Vue
+const app = createApp(App); // Declare 'app' aqui
 
-app.use(createPinia())
-app.use(router)
+const pinia = createPinia(); // Cria uma instância do Pinia
 
-app.mount('#app')
+// Usa o Pinia e o router na instância do Vue
+app.use(pinia);
+app.use(router);
+
+// Monta a aplicação
+app.mount('#app');

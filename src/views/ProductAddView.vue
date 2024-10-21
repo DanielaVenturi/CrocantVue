@@ -1,4 +1,5 @@
 <script setup>
+
 import { onMounted, reactive, ref } from 'vue';
 import ModalAddCategoria from '@/components/ModalAddCategoria.vue';
 import { useCategoriaStore } from '@/stores/categoria';
@@ -27,25 +28,38 @@ const uploadImage = (e) => {
 };
 
 async function save() {
-  if (file.value) {
-    produto.image_attachment_key = await uploaderStore.uploadImage(file.value);
-  }
+  try {
+    const authToken = localStorage.getItem('psg_auth_token'); 
+    if (file.value) {
+      produto.image_attachment_key = await uploaderStore.uploadImage(file.value);
+    }
 
-  if (produto.id) {
-    await produtoStore.atualizarProduto(produto);
-  } else {
-    await produtoStore.adicionarProduto(produto);
-  }
+    if (produto.id) {
+      await produtoStore.atualizarProduto(produto, {
+        headers: {
+          Authorization: `Bearer ${authToken}`, 
+        },
+      });
+    } else {
+      await produtoStore.adicionarProduto(produto, {
+        headers: {
+          Authorization: `Bearer ${authToken}`, 
+        },
+      });
+    }
 
   Object.assign(produto, {
-    nome: '',
-    descricao: '',
-    categoria: '',
-    image_attachment_key: '',
-    preco: '',
-  });
+      nome: '',
+      descricao: '',
+      categoria: '',
+      image_attachment_key: '',
+      preco: '',
+    });
 
-  await produtoStore.getProduto();
+    await produtoStore.getProduto();
+  } catch (error) {
+    console.error('Erro ao salvar produto:', error);
+  }
 }
 
 onMounted(async () => {

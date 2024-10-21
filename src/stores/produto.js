@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
+import axios from 'axios';
 
 import ProdutoService from '@/services/produto';
 const produtoService = new ProdutoService();

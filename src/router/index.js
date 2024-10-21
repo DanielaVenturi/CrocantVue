@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'MainLayout', // Definindo um nome apropriado para a rota raiz
+      name: 'MainLayout',
       component: LayoutFull,
       children: [
         {

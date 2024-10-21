@@ -31,7 +31,7 @@ export default defineConfig({
             purpose: 'maskable',
           },
         ],
-        id: 'com.fake-store.app',
+        id: 'com.crocant-store.app',
         orientation: 'any',
         background_color: '#ffffff',
         start_url: '.',
