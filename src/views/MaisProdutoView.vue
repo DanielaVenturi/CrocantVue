@@ -22,12 +22,69 @@ export default {
     };
   },
 };
+
+
+
+// export default {
+//   methods: {
+//     imageZoom(event) {
+//       const img = event.target;
+//       const result = document.getElementById("myresult");
+//       const lens = document.createElement("DIV");
+//       lens.setAttribute("class", "img-zoom-lens");
+//       img.parentElement.insertBefore(lens, img);
+
+//       const cx = result.offsetWidth / lens.offsetWidth;
+//       const cy = result.offsetHeight / lens.offsetHeight;
+//       result.style.backgroundImage = url('${img.src}');
+//       result.style.backgroundSize = ${img.width * cx}px ${img.height * cy}px;
+
+//       lens.addEventListener("mousemove", (e) => this.moveLens(e, img, lens, result, cx, cy));
+//       img.addEventListener("mousemove", (e) => this.moveLens(e, img, lens, result, cx, cy));
+//       lens.addEventListener("touchmove", (e) => this.moveLens(e, img, lens, result, cx, cy));
+//       img.addEventListener("touchmove", (e) => this.moveLens(e, img, lens, result, cx, cy));
+//     },
+//     moveLens(e, img, lens, result, cx, cy) {
+//       e.preventDefault();
+//       const pos = this.getCursorPos(e, img);
+//       let x = pos.x - (lens.offsetWidth / 2);
+//       let y = pos.y - (lens.offsetHeight / 2);
+
+//       if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+//       if (x < 0) { x = 0; }
+//       if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+//       if (y < 0) { y = 0; }
+
+//       lens.style.left = ${x}px;
+//       lens.style.top = ${y}px;
+//       result.style.backgroundPosition = -${x * cx}px -${y * cy}px;
+//     },
+//     getCursorPos(e, img) {
+//       const a = img.getBoundingClientRect();
+//       const x = e.pageX - a.left - window.pageXOffset;
+//       const y = e.pageY - a.top - window.pageYOffset;
+//       return { x, y };
+//     },
+//     resetLens() {
+//       const lens = document.querySelector('.img-zoom-lens');
+//       if (lens) lens.remove();
+//       const result = document.getElementById("myresult");
+//       result.style.backgroundImage = 'none';
+//     }
+//   }
+// }
+
 </script>
 
 <template>
   <div class="container">
     <div class="image-section">
-      <img src="@/assets/imagens/Frame6.png" alt="Produto principal" class="product-image" />
+      <div class="img-zoom-container">
+        <img id="myimage" src="@/assets/imagens/Frame6.png" alt="Produto principal" class="product-image" width="300"
+          height="240" @mouseover="imageZoom" @mouseleave="resetLens">
+        <div id="myresult" class="img-zoom-result"></div>
+      </div>
+
       <div class="thumbnail-images">
         <img src="" alt="Miniatura 1" />
         <img src="" alt="Miniatura 2" />
@@ -36,10 +93,12 @@ export default {
       </div>
       <div class="description">
         <h3>Descrição</h3>
-        <p>Tem um pequeno fã de Crocs no clã que superou seu par mais recente? Aqui está um giro legal em dois dos nossos estilos...</p>
+        <p>Tem um pequeno fã de Crocs no clã que superou seu par mais recente? Aqui está um giro legal em dois dos
+          nossos estilos...</p>
         <p class="disclaimer">As imagens do site podem sofrer pequena alteração...</p>
       </div>
     </div>
+
 
     <div class="details-section">
       <h1>Sandália Crocs Bayaband Clog BALLERINA PINK / CANDY PINK</h1>
@@ -63,9 +122,8 @@ export default {
           <span class="quantity-display">{{ quantity }}</span>
           <button class="quantity-button" @click="increaseQuantity">+</button>
         </div>
+        <router-link to="/carrinho">Adicionar ao carrinho</router-link>
       </div>
-
-      <button class="add-to-cart">Adicionar ao carrinho</button>
     </div>
   </div>
 </template>
@@ -146,6 +204,8 @@ body {
 }
 
 .size-selection {
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   margin: 1rem 0;
@@ -168,7 +228,76 @@ body {
 }
 
 .quantity {
-  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  @mdia only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .image-section {
+      margin-bottom: 1rem;
+    }
+
+    .product-image {
+      width: 100%;
+    }
+
+    .thumbnail-images {
+      margin: 0.5rem 0;
+    }
+
+    .thumbnail-images img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .details-section {
+      padding: 0;
+      text-align: center;
+    }
+
+    .details-section h1 {
+      font-size: 1.5rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+    }
+
+    .installments {
+      font-size: 0.9rem;
+    }
+
+    .size-button {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+
+    .quantity-controls {
+      justify-content: center;
+    }
+
+    .quantity-button {
+      width: 30px;
+      height: 30px;
+      font-size: 1.2rem;
+    }
+
+    .quantity-display {
+      width: 40px;
+      font-size: 1.2rem;
+    }
+
+    .add-to-cart {
+      padding: 0.8rem 1.5rem
+    }
+  }
 }
 
 .quantity label {
@@ -306,6 +435,6 @@ body {
 
   .add-to-cart {
     padding: 0.8rem 1.5rem
-  }}
-
+  }
+}
 </style>

@@ -25,10 +25,10 @@ const hideMenu = () => {
     </div>
     <div class="user-actions">
       <router-link to="/login">
-        <i class="icon mdi mdi-account-circle-outline" /> 
+        <i class="icon mdi mdi-account-circle-outline" />
       </router-link>
       <router-link to="/carrinho">
-        <i class="icon mdi mdi-cart-outline" /> 
+        <i class="icon mdi mdi-cart-outline" />
       </router-link>
     </div>
   </div>
@@ -53,7 +53,7 @@ const hideMenu = () => {
     <div class="divider"></div>
     <div class="column">
       <p class="title">COLEÇÕES POPULARES</p>
-      <router-link to="/produto" @click="hideMenu">NBA</router-link>    
+      <router-link to="/produto" @click="hideMenu">NBA</router-link>
       <router-link to="/produto" @click="hideMenu">3D</router-link>
       <router-link to="/produto" @click="hideMenu">Disney</router-link>
     </div>
@@ -63,29 +63,30 @@ const hideMenu = () => {
 
 <style scoped>
 .navbar {
-  
+
   display: flex;
   align-items: center;
   background-color: #f8f9fa;
   padding: 1rem 2rem;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100; 
+  z-index: 100;
 
 }
 
 .logo {
   font-size: 2rem;
-  color: #864EFF; 
-  flex-shrink: 0; 
+  color: #864EFF;
+  flex-shrink: 0;
 }
+
 .menu {
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  
+
 }
 
 .menu a {
@@ -138,7 +139,8 @@ const hideMenu = () => {
   margin-bottom: 0.5rem;
 }
 
-.column p, .column a {
+.column p,
+.column a {
   margin: 0.3rem 0;
   color: #864EFF;
   text-decoration: none;
@@ -165,5 +167,4 @@ img {
   max-width: 15%;
   height: auto;
 }
-</style> 
-
+</style>
