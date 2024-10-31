@@ -122,7 +122,7 @@ export default {
           <span class="quantity-display">{{ quantity }}</span>
           <button class="quantity-button" @click="increaseQuantity">+</button>
         </div>
-        <router-link to="/carrinho">Adicionar ao carrinho</router-link>
+        <router-link to="/carrinho">Adicionar ao Carrinho</router-link>
       </div>
     </div>
   </div>
