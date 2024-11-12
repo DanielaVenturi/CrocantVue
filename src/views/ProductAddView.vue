@@ -1,19 +1,19 @@
 <script setup>
-
-import { onMounted, reactive, ref } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import ModalAddCategoria from '@/components/ModalAddCategoria.vue';
 import { useCategoriaStore } from '@/stores/categoria';
 import { useProdutoStore } from '@/stores/produto';
 import { useUploaderStore } from '@/stores/uploader';
 
+// Instância das stores
 const categoriaStore = useCategoriaStore();
 const produtoStore = useProdutoStore();
 const uploaderStore = useUploaderStore();
 
+// Variáveis e reativos
 const showModal = ref(false);
 const file = ref(null);
 const previewImage = ref('');
-
 const produto = reactive({
   nome: '',
   descricao: '',
@@ -22,11 +22,13 @@ const produto = reactive({
   preco: '',
 });
 
+// Função para upload e pré-visualização de imagem
 const uploadImage = (e) => {
   file.value = e.target.files[0];
   previewImage.value = URL.createObjectURL(e.target.files[0]);
 };
 
+// Função de salvar produto
 async function save() {
   try {
     const authToken = localStorage.getItem('psg_auth_token'); 
@@ -34,21 +36,19 @@ async function save() {
       produto.image_attachment_key = await uploaderStore.uploadImage(file.value);
     }
 
+    // Verifica se é uma atualização ou um novo produto
     if (produto.id) {
       await produtoStore.atualizarProduto(produto, {
-        headers: {
-          Authorization: `Bearer ${authToken}`, 
-        },
+        headers: { Authorization: `Bearer ${authToken}` },
       });
     } else {
       await produtoStore.adicionarProduto(produto, {
-        headers: {
-          Authorization: `Bearer ${authToken}`, 
-        },
+        headers: { Authorization: `Bearer ${authToken}` },
       });
     }
 
-  Object.assign(produto, {
+    // Limpa o formulário após salvar
+    Object.assign(produto, {
       nome: '',
       descricao: '',
       categoria: '',
@@ -56,12 +56,14 @@ async function save() {
       preco: '',
     });
 
-    await produtoStore.getProduto();
+    // Atualiza a lista de produtos
+    await produtoStore.getProdutos();
   } catch (error) {
     console.error('Erro ao salvar produto:', error);
   }
 }
 
+// Carrega as categorias ao montar o componente
 onMounted(async () => {
   await categoriaStore.getCategorias();
 });
@@ -105,7 +107,6 @@ onMounted(async () => {
       <label for="preco">Preço</label>
       <input type="number" id="preco" v-model="produto.preco" />
     </div>
-    <!-- O botão agora usa @click.prevent -->
     <button type="button" @click.prevent="save" class="btn salvar">Adicionar</button>
   </form>
   <modal-add-categoria v-if="showModal" @close="showModal = !showModal" />

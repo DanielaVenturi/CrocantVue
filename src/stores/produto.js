@@ -1,7 +1,5 @@
-
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import ProdutoService from '@/services/produto';
 
 const produtoService = new ProdutoService();
@@ -11,41 +9,55 @@ export const useProdutoStore = defineStore('produto', () => {
 
   async function getProdutos() {
     try {
-      const response = await produtoService.getProdutos(); 
-      produtos.value = response.results; 
+      const response = await produtoService.getProdutos();
+      produtos.value = response.results;
     } catch (error) {
       console.error('Erro ao buscar produtos:', error);
     }
   }
 
   async function getProdutosByCategoria(categoria_id) {
-    produtos.value = await produtoService.getProdutosByCategoria(categoria_id);
-  }
-
-  async function createProdutos(produto) {
-    await produtoService.createProdutos(produto);
-    getProdutos();
-  }
-
-  async function buscarTodosOsProdutos() {
-    const { data } = await axios.get("/produtos/");
-    return data.results;
+    try {
+      produtos.value = await produtoService.getProdutosByCategoria(categoria_id);
+    } catch (error) {
+      console.error('Erro ao buscar produtos por categoria:', error);
+    }
   }
 
   async function adicionarProduto(produto) {
-    const { data } = await axios.post("/produtos/", produto);
-    return data.results;
+    try {
+      const response = await produtoService.createProduto(produto);
+      produtos.value.push(response); // Adiciona o novo produto à lista
+      await getProdutos(); // Atualiza a lista de produtos
+    } catch (error) {
+      console.error('Erro ao adicionar produto:', error);
+    }
   }
 
   async function atualizarProduto(produto) {
-    const { data } = await axios.put(`/produtos/${produto.id}/`, produto);
-    return data.results;
+    try {
+      await produtoService.atualizarProduto(produto);
+      await getProdutos(); // Atualiza a lista de produtos
+    } catch (error) {
+      console.error('Erro ao atualizar produto:', error);
+    }
   }
 
   async function excluirProduto(id) {
-    const { data } = await axios.delete(`/produtos/${id}/`);
-    return data.results;
+    try {
+      await produtoService.excluirProduto(id);
+      await getProdutos(); // Atualiza a lista de produtos após exclusão
+    } catch (error) {
+      console.error('Erro ao excluir produto:', error);
+    }
   }
 
-  return { produtos, createProdutos, getProdutos, getProdutosByCategoria, buscarTodosOsProdutos, adicionarProduto, atualizarProduto, excluirProduto };
+  return {
+    produtos,
+    getProdutos,
+    getProdutosByCategoria,
+    adicionarProduto,
+    atualizarProduto,
+    excluirProduto,
+  };
 });
