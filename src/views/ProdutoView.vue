@@ -1,25 +1,29 @@
       
     <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref} from 'vue';
 import { useProdutoStore } from '@/stores/produto';
 
 const produtoStore = useProdutoStore();
+const priceRange = ref(287);
+// const produtos = ref([
+//         {
+//           name: 'Sandália Crocs Bayaband Clog BALLERINA PINK/ CANDY PINK',
+//           price: 'R$ 287,10',
+//           image: '/src/assets/imagens/Frame6.png',
+//         },
+
+//       ]);
 
 async function fetchProdutos() {
-  await produtoStore.getProduto();
+  console.log('aqui')
+  await produtoStore.getProdutos();
 }
 
-onMounted(fetchProdutos);
-</script>
-      <!-- // const priceRange = ref(287);
-      // const produtos = ref([
-      //   {
-      //     name: 'Sandália Crocs Bayaband Clog BALLERINA PINK/ CANDY PINK',
-      //     price: 'R$ 287,10',
-      //     image: '/src/assets/imagens/Frame6.png',
-      //   },
+onMounted(() => fetchProdutos());
 
-      // ]); -->
+    
+</script>
+
 
     
       <template>
@@ -38,13 +42,13 @@ onMounted(fetchProdutos);
         
             <section class="produtos-list">
               <div
-                v-for="(produtos, index) in multipliedProducts"
+                v-for="(produto, index) in produtoStore.produtos"
                 :key="index"
                 class="produtos-card"
               >
-                <img :src="produtos.capa" alt="produtos" />
-                <p>{{ produtos.nome }}</p>
-                <p class="price">{{ produtos.preco }}</p>
+                <img :src="produto.capa" alt="produtos" />
+                <p>{{ produto.nome }}</p>
+                <p class="price">{{ produto.preco }}</p>
                 <router-link to="/maisproduto" >+</router-link>
               </div>
             </section>

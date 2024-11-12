@@ -9,9 +9,9 @@ const produtoService = new ProdutoService();
 export const useProdutoStore = defineStore('produto', () => {
   const produtos = ref([]);
 
-  async function getProduto() {
+  async function getProdutos() {
     try {
-      const response = await produtoService.getProduto(); 
+      const response = await produtoService.getProdutos(); 
       produtos.value = response.results; 
     } catch (error) {
       console.error('Erro ao buscar produtos:', error);
@@ -24,7 +24,7 @@ export const useProdutoStore = defineStore('produto', () => {
 
   async function createProdutos(produto) {
     await produtoService.createProdutos(produto);
-    getProduto();
+    getProdutos();
   }
 
   async function buscarTodosOsProdutos() {
@@ -47,5 +47,5 @@ export const useProdutoStore = defineStore('produto', () => {
     return data.results;
   }
 
-  return { produtos, createProdutos, getProduto, getProdutosByCategoria, buscarTodosOsProdutos, adicionarProduto, atualizarProduto, excluirProduto };
+  return { produtos, createProdutos, getProdutos, getProdutosByCategoria, buscarTodosOsProdutos, adicionarProduto, atualizarProduto, excluirProduto };
 });

@@ -8,7 +8,7 @@ axios.defaults.baseURL = `${BASE_URL}/api/`;
 axios.interceptors.request.use(
   async (config) => {
     const authStore = useAuthStore();
-    const token = authStore.getToken(); // Pega o token do store
+    const token = authStore.user.access; // Pega o token do store
 
     // const token = localStorage.getItem('token');
     if (token) {

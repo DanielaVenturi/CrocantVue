@@ -11,7 +11,7 @@ export default class ProdutoService {
       //   Authorization: `Bearer ${authToken}`, // Adiciona o token no cabeçalho
       // },
     });
-    return response.data.results;
+    return response.data;
   }
 
   async getProdutosByCategoria(categoria_id) {
