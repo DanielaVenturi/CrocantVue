@@ -6,7 +6,6 @@
     <div class="divider"></div>
 
     <div class="products">
-      <h2>Produtos</h2>
       <div class="product" v-for="product in products" :key="product.id">
         <img :src="product.image" alt="Produto" class="product-image" />
         <div class="product-info">
@@ -44,13 +43,9 @@
       </div>
       
       <div class="cart-actions-controls">
-        <!-- <label class="select-all-label">
-          <input type="checkbox" v-model="selectAll" @change="selectAllProducts">
-          Selecionar Tudo
-        </label> -->
         <button class="button-cart">Selecionar Tudo</button>
         <button class="button-cart">Excluir</button>
-        <button class="button-cart">Continuar</button>
+        <button class="button-cart">Finalizar Compra</button>
       </div>
     </div>
   </div>
@@ -103,11 +98,6 @@ export default {
 
 <style scoped>
 
-  font-family: 'Arial', sans-serif;
-  background: #f5f5f5;
-  color: #ffffff;
-  padding: 20px;
-}
 header {
   position: fixed;
   top: 0;
@@ -145,17 +135,15 @@ header {
   width: 100%;
   justify-content: flex-end;
   gap: 20%;
-
-  /* margin-left: 20px; */
 }
 
 .products,
 .cart {
   margin: 20px auto;
-  max-width: 900px;
+  max-width: 1000px;
   padding: 20px;
   background: #F0ECFF;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: 0 4px 10px rgb(100, 97, 97);
   text-align: center;
 }
@@ -184,7 +172,7 @@ header {
   width: 100%;
   justify-content: flex-end;
   gap: 20%;
-  /* margin-left: 20px; */
+  
 }
 
 
@@ -292,12 +280,10 @@ h1 {
 
 h2 {
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 25px;
   text-align: center;
   font-family: "Cherry Bomb One", system-ui;
   font-weight: lighter;
-  
-
 }
 
 h3 {
@@ -305,5 +291,6 @@ h3 {
   font-size: 20px;
   font-family: "Cherry Bomb One", system-ui;
 }
+
 
 </style>
