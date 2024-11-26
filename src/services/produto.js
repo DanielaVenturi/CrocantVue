@@ -20,8 +20,14 @@ export default class ProdutoService {
     const response = await axios.put(`/produtos/${produto.id}/`, produto);
     return response.data;
   }
+  
 
   async excluirProduto(id) {
     await axios.delete(`/produtos/${id}/`);
+  }
+
+  async getProdutoPorId(id) {
+    const response = await axios.get(`/produtos/${id}/`);
+    return response.data;
   }
 }

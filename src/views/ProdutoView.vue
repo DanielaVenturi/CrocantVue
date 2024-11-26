@@ -60,13 +60,7 @@ onMounted(() => fetchProdutos());
       </div>
       <div class="produto-descricao-stars">
         <p>{{ produto.descricao }}</p>
-        <div class="stars">
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-        </div>
+        <button @click="$router.push({name: 'Maisproduto', params: { id: produto.id }})">aaa</button>
       </div>
     </div>
   </div>

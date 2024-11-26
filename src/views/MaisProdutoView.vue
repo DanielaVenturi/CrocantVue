@@ -1,73 +1,38 @@
-<script>
-import { ref, computed } from 'vue';
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useProdutoStore } from '@/stores/produto';
+import { useRoute } from 'vue-router';
 
-export default {
-  setup() {
-    const quantity = ref(1);
+const produtoStore = useProdutoStore();
+const produto = ref(null);
+const route = useRoute();
 
-    const increaseQuantity = () => {
-      quantity.value += 1;
-    };
+async function fetchProduto() {
+  try {
+    const id = route.params.id; 
+    produto.value = await produtoStore.getProdutoPorId(id);
+  } catch (error) {
+    console.error('Erro ao buscar o produto:', error);
+  }
+}
 
-    const decreaseQuantity = () => {
-      if (quantity.value > 1) {
-        quantity.value -= 1;
-      }
-    };
-
-    return {
-      quantity,
-      increaseQuantity,
-      decreaseQuantity,
-    };
-  },
-};
+onMounted(() => {
+  fetchProduto();
+});
 </script>
 
 <template>
-  <div class="container">
-    <div class="image-section">
-      <img src="@/assets/imagens/Frame6.png" alt="Produto principal" class="product-image" />
-      <div class="thumbnail-images">
-        <img src="" alt="Miniatura 1" />
-        <img src="" alt="Miniatura 2" />
-        <img src="" alt="Miniatura 3" />
-        <img src="" alt="Miniatura 4" />
-      </div>
-      <div class="description">
-        <h3>Descrição</h3>
-        <p>Tem um pequeno fã de Crocs no clã que superou seu par mais recente? Aqui está um giro legal em dois dos nossos estilos...</p>
-        <p class="disclaimer">As imagens do site podem sofrer pequena alteração...</p>
-      </div>
+   <div>
+    <h1>Detalhes do Produto</h1>
+    <div v-if="produto">
+      <p>Nome: {{ produto.nome }}</p>
+      <p>Descrição: {{ produto.descricao }}</p>
+      <p>Preço: {{ produto.preco }}</p>
+      <img :src="produto.capa.url" alt="Imagem do produto" />
     </div>
-
-    <div class="details-section">
-      <h1>Sandália Crocs Bayaband Clog BALLERINA PINK / CANDY PINK</h1>
-      <img src="" alt="Miniatura 5" />
-      <p class="price">R$ 287,10</p>
-      <p class="installments">Em até 10x sem juros no cartão de crédito</p>
-
-      <div class="size-selection">
-        <button class="size-button">1</button>
-        <button class="size-button">1</button>
-        <button class="size-button">1</button>
-        <button class="size-button">1</button>
-        <button class="size-button">1</button>
-        <button class="size-button">1</button>
-      </div>
-
-      <div class="quantity">
-        <label for="quantity">Quantidade</label>
-        <div class="quantity-controls">
-          <button class="quantity-button" @click="decreaseQuantity">-</button>
-          <span class="quantity-display">{{ quantity }}</span>
-          <button class="quantity-button" @click="increaseQuantity">+</button>
-        </div>
-      </div>
-
-      <button class="add-to-cart">Adicionar ao carrinho</button>
-    </div>
+    <p v-else>Carregando produto...</p>
   </div>
+
 </template>
 
 <style scoped>

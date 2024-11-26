@@ -27,8 +27,8 @@ export const useProdutoStore = defineStore('produto', () => {
   async function adicionarProduto(produto) {
     try {
       const response = await produtoService.createProduto(produto);
-      produtos.value.push(response); // Adiciona o novo produto à lista
-      await getProdutos(); // Atualiza a lista de produtos
+      produtos.value.push(response); 
+      await getProdutos(); 
     } catch (error) {
       console.error('Erro ao adicionar produto:', error);
     }
@@ -37,7 +37,7 @@ export const useProdutoStore = defineStore('produto', () => {
   async function atualizarProduto(produto) {
     try {
       await produtoService.atualizarProduto(produto);
-      await getProdutos(); // Atualiza a lista de produtos
+      await getProdutos();
     } catch (error) {
       console.error('Erro ao atualizar produto:', error);
     }
@@ -46,11 +46,20 @@ export const useProdutoStore = defineStore('produto', () => {
   async function excluirProduto(id) {
     try {
       await produtoService.excluirProduto(id);
-      await getProdutos(); // Atualiza a lista de produtos após exclusão
+      await getProdutos();
     } catch (error) {
       console.error('Erro ao excluir produto:', error);
     }
   }
+  async function getProdutoPorId(id) {
+    try {
+      const produto = await produtoService.getProdutoPorId(id);
+      return produto;
+    } catch (error) {
+      console.error('Erro ao buscar produto por ID:', error);
+    }
+  }
+  
 
   return {
     produtos,
@@ -59,5 +68,6 @@ export const useProdutoStore = defineStore('produto', () => {
     adicionarProduto,
     atualizarProduto,
     excluirProduto,
+    getProdutoPorId,
   };
 });
