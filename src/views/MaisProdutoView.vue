@@ -22,18 +22,47 @@ onMounted(() => {
 </script>
 
 <template>
-   <div>
-    <h1>Detalhes do Produto</h1>
-    <div v-if="produto">
-      <p>Nome: {{ produto.nome }}</p>
-      <p>Descrição: {{ produto.descricao }}</p>
-      <p>Preço: {{ produto.preco }}</p>
-      <img :src="produto.capa.url" alt="Imagem do produto" />
+  <div>
+    <div v-if="produto" class="container">
+      <div class="image-section">
+        <img :src="produto.capa.url" alt="Produto principal" class="product-image" />
+        <div class="thumbnail-images">
+         
+        </div>
+        <div class="description">
+          <h3>Descrição</h3>
+          <p>{{ produto.descricao }}</p>
+        </div>
+      </div>
+      <div class="details-section">
+        <h1>{{ produto.nome }}</h1>
+        <img src="" alt="Miniatura 5" />
+        <p class="price">{{ produto.preco }}</p>
+        <p class="installments">Em até 10x sem juros no cartão de crédito</p>
+        <div class="size-selection">
+          <button class="size-button">1</button>
+          <button class="size-button">1</button>
+          <button class="size-button">1</button>
+          <button class="size-button">1</button>
+          <button class="size-button">1</button>
+          <button class="size-button">1</button>
+        </div>
+        <div class="quantity">
+          <label for="quantity">Quantidade</label>
+          <div class="quantity-controls">
+            <button class="quantity-button">-</button>
+            <span class="quantity-display"></span>
+            <button class="quantity-button" >+</button>
+          </div>
+        </div>
+        <button class="add-to-cart">Adicionar ao carrinho</button>
+      </div>
     </div>
+
     <p v-else>Carregando produto...</p>
   </div>
-
 </template>
+
 
 <style scoped>
 body {
