@@ -23,6 +23,8 @@
               <button class="rounded-btn" @click="increaseQuantity(product)">+</button>
             </div>
           </div>
+
+          <button class="add-to-cart-btn" @click="addToCart(product)">Adicionar ao Carrinho</button>
         </div>
       </div>
     </div>
@@ -38,14 +40,10 @@
       <div v-if="cart.length > 0" class="cart-summary">
         <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
       </div>
-      <div class="cart-actions">
-       
-      </div>
-      
       <div class="cart-actions-controls">
-        <button class="button-cart">Selecionar Tudo</button>
-        <button class="button-cart">Excluir</button>
-        <button class="button-cart">Finalizar Compra</button>
+        <button class="button-cart" @click="selectAll">Selecionar Tudo</button>
+        <button class="button-cart" @click="clearCart">Excluir</button>
+        <button class="button-cart" @click="checkout">Finalizar Compra</button>
       </div>
     </div>
   </div>
@@ -57,17 +55,17 @@ export default {
   data() {
     return {
       products: [
-        { id: 1, name: 'Produto A', price: 10.00, image: 'https://via.placeholder.com/100x100?text=Produto+A', quantity: 0 },
-        { id: 2, name: 'Produto B', price: 20.00, image: 'https://via.placeholder.com/100x100?text=Produto+B', quantity: 0 },
-        { id: 3, name: 'Produto C', price: 30.00, image: 'https://via.placeholder.com/100x100?text=Produto+C', quantity: 0 }
+        { id: 1, name: 'Produto A', price: 10.0, image: 'https://via.placeholder.com/100x100?text=Produto+A', quantity: 0 },
+        { id: 2, name: 'Produto B', price: 20.0, image: 'https://via.placeholder.com/100x100?text=Produto+B', quantity: 0 },
+        { id: 3, name: 'Produto C', price: 30.0, image: 'https://via.placeholder.com/100x100?text=Produto+C', quantity: 0 },
       ],
-      cart: []
+      cart: [],
     };
   },
   computed: {
     cartTotal() {
       return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    }
+    },
   },
   methods: {
     increaseQuantity(product) {
@@ -80,7 +78,7 @@ export default {
     },
     addToCart(product) {
       if (product.quantity > 0) {
-        const cartItem = this.cart.find(item => item.id === product.id);
+        const cartItem = this.cart.find((item) => item.id === product.id);
         if (cartItem) {
           cartItem.quantity += product.quantity;
         } else {
@@ -90,12 +88,25 @@ export default {
       }
     },
     removeFromCart(item) {
-      this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
+      this.cart = this.cart.filter((cartItem) => cartItem.id !== item.id);
+    },
+    selectAll() {
+      this.cart = this.products.map((product) => ({ ...product, quantity: product.quantity || 1 }));
+    },
+    clearCart() {
+      this.cart = [];
+    },
+    checkout() {
+      if (this.cart.length > 0) {
+        alert(`Compra finalizada! Total: $${this.cartTotal.toFixed(2)}`);
+        this.clearCart();
+      } else {
+        alert('Carrinho vazio!');
+      }
     },
   },
 };
 </script>
-
 <style scoped>
 
 header {
