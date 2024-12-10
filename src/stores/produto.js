@@ -33,6 +33,7 @@ export const useProdutoStore = defineStore('produto', () => {
       console.error('Erro ao adicionar produto:', error);
     }
   }
+ 
 
   async function atualizarProduto(produto) {
     try {

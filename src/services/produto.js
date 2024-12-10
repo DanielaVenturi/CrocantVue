@@ -16,6 +16,7 @@ export default class ProdutoService {
     return response.data;
   }
 
+
   async atualizarProduto(produto) {
     const response = await axios.put(`/produtos/${produto.id}/`, produto);
     return response.data;

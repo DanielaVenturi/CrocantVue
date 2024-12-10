@@ -22,13 +22,11 @@ const produto = reactive({
   preco: '',
 });
 
-// Função para upload e pré-visualização de imagem
 const uploadImage = (e) => {
   file.value = e.target.files[0];
   previewImage.value = URL.createObjectURL(e.target.files[0]);
 };
 
-// Função de salvar produto
 async function save() {
   try {
     const authToken = localStorage.getItem('psg_auth_token'); 
@@ -36,7 +34,6 @@ async function save() {
       produto.image_attachment_key = await uploaderStore.uploadImage(file.value);
     }
 
-    // Verifica se é uma atualização ou um novo produto
     if (produto.id) {
       await produtoStore.atualizarProduto(produto, {
         headers: { Authorization: `Bearer ${authToken}` },
@@ -47,7 +44,6 @@ async function save() {
       });
     }
 
-    // Limpa o formulário após salvar
     Object.assign(produto, {
       nome: '',
       descricao: '',
@@ -56,14 +52,12 @@ async function save() {
       preco: '',
     });
 
-    // Atualiza a lista de produtos
     await produtoStore.getProdutos();
   } catch (error) {
     console.error('Erro ao salvar produto:', error);
   }
 }
 
-// Carrega as categorias ao montar o componente
 onMounted(async () => {
   await categoriaStore.getCategorias();
 });
@@ -109,7 +103,7 @@ onMounted(async () => {
     </div>
     <button type="button" @click.prevent="save" class="btn salvar">Adicionar</button>
   </form>
-  <modal-add-categoria v-if="showModal" @close="showModal = !showModal" />
+  <!-- <modal-add-categoria v-if="showModal" @close="showModal = !showModal" /> -->
 </template>
 
 <style scoped>

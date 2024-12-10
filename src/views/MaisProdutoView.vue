@@ -39,13 +39,8 @@ onMounted(() => {
         <img src="" alt="Miniatura 5" />
         <p class="price">{{ produto.preco }}</p>
         <p class="installments">Em até 10x sem juros no cartão de crédito</p>
-        <div class="size-selection">
-          <button class="size-button">1</button>
-          <button class="size-button">1</button>
-          <button class="size-button">1</button>
-          <button class="size-button">1</button>
-          <button class="size-button">1</button>
-          <button class="size-button">1</button>
+        <div  v-for="produto in produtoStore.produtos" :key="produto.id"  class="size-selection">
+        <p>{{ produto.tamanho }}</p>
         </div>
         <div class="quantity">
           <label for="quantity">Quantidade</label>
