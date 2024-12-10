@@ -55,9 +55,9 @@ export default {
   data() {
     return {
       products: [
-        { id: 1, name: 'Produto A', price: 10.0, image: 'https://via.placeholder.com/100x100?text=Produto+A', quantity: 0 },
-        { id: 2, name: 'Produto B', price: 20.0, image: 'https://via.placeholder.com/100x100?text=Produto+B', quantity: 0 },
-        { id: 3, name: 'Produto C', price: 30.0, image: 'https://via.placeholder.com/100x100?text=Produto+C', quantity: 0 },
+        { id: 1, name: 'Produto A', price: 10.0, quantity: 0 },
+        { id: 2, name: 'Produto B', price: 20.0, quantity: 0 },
+        { id: 3, name: 'Produto C', price: 30.0, quantity: 0 },
       ],
       cart: [],
     };
@@ -258,7 +258,7 @@ button:active {
 .cart-actions-controls{
   display: flex;
   justify-content: space-between;
-  margin-bottom:60px;
+  margin-bottom:30px;
 }
 .button-cart{
   font-family: "Cherry Bomb One", system-ui;
