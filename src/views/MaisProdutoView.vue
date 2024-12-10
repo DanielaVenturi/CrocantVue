@@ -19,6 +19,16 @@ async function fetchProduto() {
 onMounted(() => {
   fetchProduto();
 });
+
+async function salvar() {
+  if (pedido.id) {
+    await pedidoApi.atualizarCategoria(pedido)
+  } else {
+    await pedidoApi.adicionarCategoria(pedido)
+  }
+  pedidos.value = await pedidoApi.buscarTodasAsCategorias()
+  limpar()
+}
 </script>
 
 <template>
@@ -36,7 +46,6 @@ onMounted(() => {
       </div>
       <div class="details-section">
         <h1>{{ produto.nome }}</h1>
-        <img src="" alt="Miniatura 5" />
         <p class="price">{{ produto.preco }}</p>
         <p class="installments">Em até 10x sem juros no cartão de crédito</p>
         <div  v-for="produto in produtoStore.produtos" :key="produto.id"  class="size-selection">
@@ -54,7 +63,6 @@ onMounted(() => {
       </div>
     </div>
 
-    <p v-else>Carregando produto...</p>
   </div>
 </template>
 
@@ -224,13 +232,9 @@ body {
 .description p {
   font-size: 1rem;
   color: #333;
+  margin-bottom: 1rem;
 }
 
-.disclaimer {
-  font-size: 0.9rem;
-  color: #999;
-  margin-top: 1rem;
-}
 
 @media only screen and (max-width: 768px) {
   .container {
