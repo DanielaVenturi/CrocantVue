@@ -35,7 +35,7 @@ onMounted(() => {
         <div class="description">
           <h3>Descrição</h3>
           <p>{{ produto.descricao }}</p>
-        </div>4r
+        </div>  
       </div>
       <div class="details-section">
         <h1>{{ produto.nome }}</h1>
