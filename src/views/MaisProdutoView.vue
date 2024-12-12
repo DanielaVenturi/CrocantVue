@@ -20,15 +20,8 @@ onMounted(() => {
   fetchProduto();
 });
 
-async function salvar() {
-  if (pedido.id) {
-    await pedidoApi.atualizarCategoria(pedido)
-  } else {
-    await pedidoApi.adicionarCategoria(pedido)
-  }
-  pedidos.value = await pedidoApi.buscarTodasAsCategorias()
-  limpar()
-}
+
+
 </script>
 
 <template>
@@ -42,7 +35,7 @@ async function salvar() {
         <div class="description">
           <h3>Descrição</h3>
           <p>{{ produto.descricao }}</p>
-        </div>
+        </div>4r
       </div>
       <div class="details-section">
         <h1>{{ produto.nome }}</h1>
@@ -59,7 +52,10 @@ async function salvar() {
             <button class="quantity-button" >+</button>
           </div>
         </div>
-        <button class="add-to-cart">Adicionar ao carrinho</button>
+        
+        <RouterLink  class="add-to-cart" to="/carrinho">
+    Adicionar ao Carrinho
+    </RouterLink>
       </div>
     </div>
 

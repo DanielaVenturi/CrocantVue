@@ -10,17 +10,10 @@ const categoriaStore = useCategoriaStore();
 const produtoStore = useProdutoStore();
 const uploaderStore = useUploaderStore();
 
-// Variáveis e reativos
 const showModal = ref(false);
 const file = ref(null);
 const previewImage = ref('');
-const produto = reactive({
-  nome: '',
-  descricao: '',
-  categoria: '',
-  image_attachment_key: '',
-  preco: '',
-});
+
 
 const uploadImage = (e) => {
   file.value = e.target.files[0];
