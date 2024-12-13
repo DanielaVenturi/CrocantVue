@@ -33,15 +33,10 @@ onMounted(async () => {
       </div>
       <div class="produto-descricao-stars">
         <p>{{ produto.descricao }}</p>
-        <div class="stars">
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-          <i class="mdi mdi-star" size="20" />
-        </div>
       </div>
     </div>
   </div>
 </template>
+<style scoped>
 
+</style>
