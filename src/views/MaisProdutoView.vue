@@ -40,11 +40,11 @@ onMounted(() => {
       <div class="details-section">
         <h1>{{ produto.nome }}</h1>
         <p class="price">{{ produto.preco }}</p>
-        <p class="installments">Em até 10x sem juros no cartão de crédito</p>
-        <div  v-for="produto in produtoStore.produtos" :key="produto.id"  class="size-selection">
-        <p>{{ produto.tamanho }}</p>
-        </div>
+        <p class="installments">Em até 10x sem juros no cartão de crédito</p> 
+        
         <div class="quantity">
+          <label for="quantity">Tamanho</label>
+          <p>{{ produto.tamanho }}</p>
           <label for="quantity">Quantidade</label>
           <div class="quantity-controls">
             <button class="quantity-button">-</button>

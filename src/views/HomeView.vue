@@ -23,7 +23,7 @@ onMounted(() => fetchProdutos());
       <img src="@/assets/imagens/Star-wars.webp" alt="Star Wars" />
     </div>
     <div class="product-card">
-      <img src="@/assets/imagens/shrek.jpg" alt="Shrek" />
+      <img src="@/assets/imagens/Shrek.png" alt="Shrek" />
     </div>
     <div class="product-card">
       <img src="@/assets/imagens/kitty.png" alt="Hello Kitty" />
@@ -54,79 +54,52 @@ onMounted(() => fetchProdutos());
 </template>
 
 <style scoped>
-
-
+/* Container principal para coleções */
 .product-card-colecoes {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espaço entre os cards */
+  padding: 20px;
+  margin-top:50px;
+ 
 }
 
+/* Estilo dos cards das coleções */
 .product-card {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.2s ease;
-  margin-bottom: 15px; /* Adiciona margem inferior para espaçamento entre as linhas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-card img {
-  max-width: 100%;
-  max-height: 150%;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain; /* Ajusta a imagem dentro do card */
+  border-radius: 10px; /* Bordas arredondadas */
 }
 
 .product-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* Layout da visualização de produtos */
 .produto-view {
   display: flex;
-  padding: 2rem;
-  margin-top: 80px;
-}
-
-.filter-section {
-  width: 250px;
-  margin-right: 2rem;
-  background-color: #F9F2FF;
-  padding: 1.5rem;
-  border-radius: 12px;
-  color: #864EFF;
-}
-
-.filter-section h2 {
-  font-size: 2rem;
-  color: #864EFF;
-  margin-bottom: 1rem;
-}
-
-.filter p {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.slider {
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.color-picker {
-  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: 2rem;
+  margin-top: 2rem;
 }
 
-.color-swatch {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-left: 0.5rem;
-  background-color: #FFBAD8;
-}
-
+/* Lista de produtos */
 .produtos-list {
   display: flex;
   flex-wrap: wrap;
@@ -134,11 +107,13 @@ onMounted(() => fetchProdutos());
   justify-content: center;
 }
 
+/* Estilo dos cards de produtos */
 .produto-card {
-  background-color: #F9F2FF;
+  background-color: #f9f2ff;
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
+  width: 200px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -148,6 +123,7 @@ onMounted(() => fetchProdutos());
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Imagens dos produtos */
 .produto-card img {
   width: 100%;
   max-width: 150px;
@@ -155,9 +131,10 @@ onMounted(() => fetchProdutos());
   margin-bottom: 1rem;
 }
 
+/* Nome e preço dos produtos */
 .produto-card p {
   margin: 0.5rem 0;
-  color: #864EFF;
+  color: #864eff;
   font-weight: bold;
 }
 
@@ -166,8 +143,9 @@ onMounted(() => fetchProdutos());
   font-weight: bold;
 }
 
+/* Botão adicionar produto */
 .produto-card button {
-  background-color: #864EFF;
+  background-color: #864eff;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
@@ -177,25 +155,20 @@ onMounted(() => fetchProdutos());
 }
 
 .produto-card button:hover {
-  background-color: #D78FFF;
+  background-color: #d78fff;
   transform: scale(1.05);
 }
 
+/* Responsividade */
 @media only screen and (max-width: 768px) {
-  .produto-view {
+  .product-card-colecoes {
     flex-direction: column;
     align-items: center;
-  }
-
-  .filter-section {
-    width: 100%;
-    margin-bottom: 1.5rem;
-    margin-right: 0;
   }
 
   .produtos-list {
     grid-template-columns: 1fr;
   }
 }
-
 </style>
+
