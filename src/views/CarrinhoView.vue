@@ -1,14 +1,22 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useProdutoStore } from '@/stores/produto';
 
 const produtoStore = useProdutoStore();
+
+// IDs que você quer filtrar
+const filteredIds = [1]; // Substitua pelos IDs desejados
 
 async function fetchProdutos() {
   await produtoStore.getProdutos();
 }
 
 onMounted(() => fetchProdutos());
+
+// Computed property que retorna apenas os produtos com os IDs desejados
+const filteredProdutos = computed(() => {
+  return produtoStore.produtos.filter(produto => filteredIds.includes(produto.id));
+});
 </script>
 
 <template>
@@ -17,10 +25,10 @@ onMounted(() => fetchProdutos());
       <h1>Produtos</h1>
     </header>
     <section class="produtos-list">
-      <div v-if="produtoStore.produtos.length === 0" class="mensagem">
+      <div v-if="filteredProdutos.length === 0" class="mensagem">
         <p>Produtos não encontrados!!!</p>
       </div>
-      <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto-item">
+      <div v-for="produto in filteredProdutos" :key="produto.id" class="produto-item">
         <div class="produto-info">
           <div class="produto-imagem">
             <img :src="produto.capa.url" alt="Imagem do {{ produto.nome }}" />
@@ -39,7 +47,7 @@ onMounted(() => fetchProdutos());
           <span>Quantidade</span>
           <div class="quantidade-controle">
             <button>-</button>
-            <span>0</span>
+            <span>1</span>
             <button>+</button>
           </div>
         </div>
@@ -55,77 +63,81 @@ onMounted(() => fetchProdutos());
 
 <style scoped>
 .carrinho {
-  background-color: #f4eeff;
-  border-radius: 20px;
-  padding: 2rem;
-  max-width: 600px;
-  margin: 2rem auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-  text-align: center;
-  font-size: 2rem;
-  color: #864eff;
-  margin-bottom: 1.5rem;
-}
-
-.produtos-list {
-  background-color: #ffffff;
+  background-color: #f9f9fc;
   border-radius: 16px;
   padding: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
 }
 
-.produto-item {
+/* Cabeçalho */
+header h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #6d28d9;
+  margin-bottom: 1rem;
+}
+
+/* Lista de Produtos */
+.produtos-list {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.produto-item:last-child {
-  border-bottom: none;
-}
-
-.produto-info {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
 }
 
-.produto-imagem img {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  background-color: #dcdcdc;
+/* Card do Produto */
+.produto-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  gap: 1rem;
+  transition: transform 0.2s ease;
 }
 
+.produto-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagem do Produto */
+.produto-imagem img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #f3f4f6;
+}
+
+/* Detalhes do Produto */
 .produto-detalhes {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.produto-detalhes .produto-nome {
-  margin: 0;
-  color: #864eff;
+.produto-nome {
   font-weight: bold;
-  text-decoration: none;
+  font-size: 1rem;
+  color: #6d28d9;
+  margin-bottom: 0.5rem;
   cursor: pointer;
-  transition: color 0.3s;
 }
 
-.produto-detalhes .produto-nome:hover {
-  color: #d78fff;
+.produto-nome:hover {
+  color: #a855f7;
 }
 
-.produto-detalhes .preco {
-  color: #864eff;
+.preco {
+  font-size: 0.9rem;
+  color: #7e22ce;
   font-weight: bold;
 }
 
+/* Controle de Quantidade */
 .produto-quantidade {
   display: flex;
   flex-direction: column;
@@ -135,43 +147,71 @@ header h1 {
 
 .quantidade-controle {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
 }
 
 .quantidade-controle button {
-  background-color: #864eff;
-  color: #fff;
+  background-color: #6d28d9;
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
-  padding: 0.5rem;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .quantidade-controle button:hover {
-  background-color: #d78fff;
+  background-color: #a855f7;
 }
 
+.quantidade-controle span {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* Rodapé com Botões */
 .acoes {
   display: flex;
-  justify-content: space-around;
-  margin-top: 1.5rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: space-between;
 }
 
 .acoes button {
-  background-color: #864eff;
-  color: #fff;
+  flex: 1;
+  background-color: #6d28d9;
+  color: #ffffff;
   border: none;
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .acoes button:hover {
-  background-color: #d78fff;
+  background-color: #a855f7;
   transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .produto-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .quantidade-controle button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .acoes button {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
 }
 </style>

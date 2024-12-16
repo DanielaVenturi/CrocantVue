@@ -48,7 +48,7 @@ onMounted(() => {
           <label for="quantity">Quantidade</label>
           <div class="quantity-controls">
             <button class="quantity-button">-</button>
-            <span class="quantity-display"></span>
+            <span class="quantity-display">1</span>
             <button class="quantity-button" >+</button>
           </div>
         </div>

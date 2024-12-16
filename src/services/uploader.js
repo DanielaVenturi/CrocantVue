@@ -13,11 +13,4 @@ export default class UploaderService {
   }
 }
 
-    // async deleteFile(fileUrl) {
-    //     await axios.delete(`/media/images${fileUrl}`);
-    // }
-
-    // async getSignedUrl(fileUrl) {
-    //     const response = await axios.get(`/media/images/signed-url/${fileUrl}`);
-    //     return response.data.url;
-    // }
+  

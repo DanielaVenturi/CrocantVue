@@ -1,22 +1,24 @@
-      
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useProdutoStore } from '@/stores/produto';
 
 const produtoStore = useProdutoStore();
 
+// IDs que você quer filtrar
+const filteredIds = [1, 3, 4, 5]; // Substitua pelos IDs que você quer mostrar
+
 async function fetchProdutos() {
-  console.log('aqui')
   await produtoStore.getProdutos();
 }
 
 onMounted(() => fetchProdutos());
 
-
+// Computed property que retorna apenas os produtos com os IDs desejados
+const filteredProdutos = computed(() => {
+  return produtoStore.produtos.filter(produto => filteredIds.includes(produto.id));
+});
 </script>
 
-
-    
 <template>
   <div class="produto-view">
     <aside class="filter-section">
@@ -32,25 +34,23 @@ onMounted(() => fetchProdutos());
     </aside>
 
     <section class="produtos-list">
-  <div v-if="produtoStore.produtos.length === 0">
-    <p>Produtos não encontrados!!!</p>
-  </div>
-  <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto-card">
-    <div class="produto-img-wrapper">
-      <img :src="produto.capa.url" alt="Produto: {{ produto.nome }}" />
-    </div>
-    <div class="produto-nome-preco">
-      <p>{{ produto.nome }}</p>
-      <p class="price">R$ {{ produto.preco }}</p>
-    </div>
-    <button @click="$router.push({ name: 'Maisproduto', params: { id: produto.id } })">+</button>
-  </div>
-</section>
+      <div v-if="filteredProdutos.length === 0">
+        <p>Produtos não encontrados!!!</p>
+      </div>
+      <div v-for="produto in filteredProdutos" :key="produto.id" class="produto-card">
+        <div class="produto-img-wrapper">
+          <img :src="produto.capa.url" alt="Produto: {{ produto.nome }}" />
+        </div>
+        <div class="produto-nome-preco">
+          <p>{{ produto.nome }}</p>
+          <p class="price">R$ {{ produto.preco }}</p>
+        </div>
+        <button @click="$router.push({ name: 'Maisproduto', params: { id: produto.id } })">+</button>
+      </div>
+    </section>
   </div>
 </template>
-        
-      
-        
+
 <style scoped>
 .produto-view {
   display: flex;
