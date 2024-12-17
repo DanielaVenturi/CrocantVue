@@ -1,27 +1,63 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useProdutoStore } from '@/stores/produto';
+import { usePedidoStore } from '@/stores/pedido';
 import { useRoute } from 'vue-router';
 
-const produtoStore = useProdutoStore();
+// Referências de estado
 const produto = ref(null);
+const quantidade = ref(1);
+
+// Stores
+const produtoStore = useProdutoStore();
+const pedidoStore = usePedidoStore();
+
+// Rota para obter o ID do produto
 const route = useRoute();
 
+// Buscar dados do produto
 async function fetchProduto() {
   try {
-    const id = route.params.id; 
-    produto.value = await produtoStore.getProdutoPorId(id);
+    const id = route.params.id;
+    const produtoCarregado = await produtoStore.getProdutoPorId(id);
+
+    // Validar o preço
+    if (produtoCarregado && typeof produtoCarregado.preco === 'string') {
+      produtoCarregado.preco = parseFloat(produtoCarregado.preco) || 0;
+    }
+
+    produto.value = produtoCarregado;
   } catch (error) {
     console.error('Erro ao buscar o produto:', error);
   }
 }
 
+// Adicionar produto ao carrinho
+async function addPedido() {
+  if (!produto.value) {
+    return;
+  }
+
+  await pedidoStore.buscarUltimoPedido()
+  const novoPedido = {
+    ...pedidoStore.pedidoAtual,
+    produto: [
+      ...pedidoStore.pedidoAtual.produto.map(produto => produto.id),
+      produto.value.id
+    ]
+  }
+  try {
+    await pedidoStore.atualizarPedido(novoPedido);
+    console.log("Produto adicionado ao carrinho com sucesso!");
+  } catch (error) {
+    console.error("Erro ao adicionar ao carrinho:", error);
+  }
+}
+
+// Carregar produto ao montar o componente
 onMounted(() => {
   fetchProduto();
 });
-
-
-
 </script>
 
 <template>
@@ -29,36 +65,36 @@ onMounted(() => {
     <div v-if="produto" class="container">
       <div class="image-section">
         <img :src="produto.capa.url" alt="Produto principal" class="product-image" />
-        <div class="thumbnail-images">
-         
-        </div>
         <div class="description">
           <h3>Descrição</h3>
           <p>{{ produto.descricao }}</p>
-        </div>  
+        </div>
       </div>
+      
       <div class="details-section">
         <h1>{{ produto.nome }}</h1>
-        <p class="price">{{ produto.preco }}</p>
-        <p class="installments">Em até 10x sem juros no cartão de crédito</p> 
+        <p class="price">
+  R$ {{ typeof produto.preco === 'number' ? produto.preco.toFixed(2) : '0.00' }}
+</p>
+
+        <p class="installments">Em até 10x sem juros no cartão de crédito</p>
         
+        <!-- Quantidade -->
         <div class="quantity">
           <label for="quantity">Tamanho</label>
           <p>{{ produto.tamanho }}</p>
           <label for="quantity">Quantidade</label>
           <div class="quantity-controls">
-            <button class="quantity-button">-</button>
-            <span class="quantity-display">1</span>
-            <button class="quantity-button" >+</button>
+            <button class="quantity-button" @click="quantidade > 1 && (quantidade--)">-</button>
+            <span class="quantity-display">{{ quantidade }}</span>
+            <button class="quantity-button" @click="quantidade++">+</button>
           </div>
         </div>
         
-        <RouterLink  class="add-to-cart" to="/carrinho">
-    Adicionar ao Carrinho
-    </RouterLink>
+        <!-- Botão para adicionar ao carrinho -->
+        <button class="add-to-cart" @click="addPedido">Adicionar ao Carrinho</button>
       </div>
     </div>
-
   </div>
 </template>
 

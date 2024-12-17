@@ -1,23 +1,77 @@
 <script setup>
-import { onMounted, computed } from 'vue';
-import { useProdutoStore } from '@/stores/produto';
+import { onMounted, ref } from 'vue';
+import { usePedidoStore } from '@/stores/pedido';
 
-const produtoStore = useProdutoStore();
+const pedidoStore = usePedidoStore();
 
-// IDs que você quer filtrar
-const filteredIds = [1]; // Substitua pelos IDs desejados
 
-async function fetchProdutos() {
-  await produtoStore.getProdutos();
+const produtos = ref([]);
+
+
+async function fetchPedidos() {
+  await pedidoStore.buscarUltimoPedido();
+  produtos.value = pedidoStore.pedidoAtual.produto
 }
 
-onMounted(() => fetchProdutos());
+async function deletePedido(id) {
+  await pedidoStore.excluirPedido(id);
+  fetchPedidos(); 
+}
 
-// Computed property que retorna apenas os produtos com os IDs desejados
-const filteredProdutos = computed(() => {
-  return produtoStore.produtos.filter(produto => filteredIds.includes(produto.id));
-});
+
+const incrementar = (produto) => {
+  produto.quantidade += 1;
+};
+
+
+const decrementar = (produto) => {
+  if (produto.quantidade > 1) {
+    produto.quantidade -= 1;
+  }
+};
+
+
+const selecionarTudo = () => {
+  produtos.value.forEach((produto) => {
+    produto.selecionado = true;
+  });
+};
+
+const excluirProdutoCarrinho = async (id) => {
+  const novoProduto = produtos.value.map(produto => produto.id)
+  novoProduto.forEach((produto, index) => {
+    if (produto == id) {
+      novoProduto.splice(index, 1)
+    }
+  })
+
+  const novoPedido = {
+    ...pedidoStore.pedidoAtual,
+    produto: novoProduto
+  }
+
+  await pedidoStore.atualizarPedido(novoPedido)
+  await fetchPedidos()
+  
+}
+
+const continuarCompra = async() => {
+  const novoPedido = {
+    ...pedidoStore.pedidoAtual,
+    produto: []
+  }
+  if (pedidoStore.pedidoAtual.produto.length > 0) {
+    await pedidoStore.atualizarPedido(novoPedido)
+    alert("Compra Finalizada")
+    await fetchPedidos()
+  } else {
+    alert('Não há produtos no carrinho')
+  }
+};
+
+onMounted(async () => await fetchPedidos());
 </script>
+
 
 <template>
   <div class="carrinho">
@@ -25,41 +79,37 @@ const filteredProdutos = computed(() => {
       <h1>Produtos</h1>
     </header>
     <section class="produtos-list">
-      <div v-if="filteredProdutos.length === 0" class="mensagem">
-        <p>Produtos não encontrados!!!</p>
+  <div v-if="produtos.length === 0" class="mensagem-produtos-vazios">
+    <p>Produtos não encontrados!!!</p>
+  </div>
+  <div v-for="produto in produtos" :key="produto.id" class="produto-item">
+    <div class="produto-info">
+      <div class="produto-imagem">
+        <img :src="produto.capa.file" :alt="`Imagem do ${produto.nome}`" />
       </div>
-      <div v-for="produto in filteredProdutos" :key="produto.id" class="produto-item">
-        <div class="produto-info">
-          <div class="produto-imagem">
-            <img :src="produto.capa.url" alt="Imagem do {{ produto.nome }}" />
-          </div>
-          <div class="produto-detalhes">
-            <p 
-              class="produto-nome" 
-              @click="$router.push({ name: 'Maisproduto', params: { id: produto.id } })"
-            >
-              {{ produto.nome }}
-            </p>
-            <p class="preco">R$ {{ produto.preco }}</p>
-          </div>
-        </div>
-        <div class="produto-quantidade">
-          <span>Quantidade</span>
-          <div class="quantidade-controle">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-          </div>
-        </div>
+      <div class="produto-detalhes">
+        <p
+          class="produto-nome"
+          @click="
+            $router.push({ name: 'Maisproduto', params: { id: produto.id } })
+          "
+        >
+          {{ produto.nome }}
+        </p>
+        <p class="preco">R$ {{ produto.preco }}</p>
       </div>
-    </section>
+    </div>
+    <div class="acoes">
+     <button @click="excluirProdutoCarrinho(produto.id)">Excluir</button>
+    </div>
+  </div>
+</section>
     <footer class="acoes">
-      <button>Selecionar Tudo</button>
-      <button>Excluir</button>
-      <button>Continuar</button>
+      <button @click="continuarCompra">Terminar Compra</button>
     </footer>
   </div>
 </template>
+
 
 <style scoped>
 .carrinho {

@@ -7,6 +7,7 @@ axios.defaults.baseURL = `${BASE_URL}/api/`;
 
 axios.interceptors.request.use(
   async (config) => {
+    console.log("interceptor")
     const authStore = useAuthStore();
     const token = authStore.user.access; 
 
